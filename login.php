@@ -15,7 +15,7 @@
             $isadmin = $row["isadmin"];
             if($isadmin == 0) include 'users.php';
             else {
-                header('Location: admin.html');
+                header('Location: ADMIN/admin.html');
             }
         }
     } 
