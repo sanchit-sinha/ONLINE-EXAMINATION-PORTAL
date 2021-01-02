@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login-Page</title>
+    <style>
+        body{
+            text-align: center;
+            /* margin-top: 15%; */
+        }
+        #username ,#userpassword, #login_button, #signup{
+            padding: 16px;
+            /* margin: 8px; */
+        }
+        #container{
+            /* margin-left: 40vw; */
+            text-align: center;
+            display: block ;
+            max-width: 15vw;
+        }
+        #signup , #login_button{
+            width: 100%;
+            position: relative;
+        }
+        button{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id = "container" style="text-align: center;">
+        <form action="login.php" method="POST">
+            <h1>LOGIN</h1>
+            <input id = "username" type = "text" name = "username" placeholder="Enter User Name"> <br>
+            <input id = "userpassword" type = "password" name = "userpassword" placeholder="Enter your password"> <br>
+            <button id = "login_button" type="submit">
+                LOGIN 
+            </button>
+        </form>
+        <br><br>
+        <form action="register.php" method="GET">
+            <button type="submit" id = "signup" name = "signup" style="background-color: rgb(49, 255, 228);">SIGN UP</button>
+        </form>
+    </div>
+</body>
+</html>

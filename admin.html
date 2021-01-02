@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN</title>
+</head>
+<body>
+    <div id = "container">
+        <h1>Hello ADMIN!</h1>
+        <form action="admin.php" method="POST">
+            <h3>Enter the details of the new test</h3>
+            <span >TEST NAME : </span>
+            <input type="text" id="testname" placeholder="Enter the name of the test"> <br>
+            <span>NO. OF QUESTIONS : </span>
+            <input type="number" id="numberofquestions" placeholder="No. of questions" onblur="generate_questions();"> 
+            <br>
+            <div id = "questions">
+
+            </div>
+            <script>
+                function generate_questions(){
+                    var n = document.getElementById('numberofquestions').value;
+                    // document.getElementById("questions").innerHTML = Number(n) + 5;
+
+                    // while loop with save button triggerign add.php adding question to database
+                    // change option as well to change the question triggering change.php
+
+                    var str = "<br><h2>QUESTIONS</h2> ";
+                    for(i = 1 ; i <= Number(n) ; i++){
+                        var idstring = i.toString() + "Q";
+                        // str += idstring;
+                        str += "<div id = 'Question'" + i.toString() + "> <br>"; 
+                        str += i.toString() + ". ";
+                        str += "<textarea name =" + idstring + " id =" + idstring +  " cols='150' rows='10' placeholder='Enter your question'></textarea> ";
+                        str += "  +  " + "<input type='text' placeholder = '+ve Marks' name= 'positive_marks_for_question'"+ i.toString()+" <br> ";
+                        str += "  -  " + "<input type='text' placeholder = '-ve Marks' name= 'negative_marks_for_question'"+ i.toString()+" ";
+                        str += "</div> <br>";
+                        
+                        str += "<div id = 'Tag_for_question'" + i.toString() + "> <br>";
+                        str += " TAG : ";
+                        str += "     <textarea type='text' name=" + "tag_" + idstring+ " cols='140' rows='2' placeholder='Tag of the question'></textarea> <br>";
+                        str += "</div> <br>";
+                        
+                        str += "<div id = 'option_for_question'" + i.toString() + "> <br>";
+                        str += "OPTIONS : "
+                        str += "<div id = 'option'" + i.toString() + "a> <br>";
+                        str += "a) ";
+                        str += "<input type = 'checkbox' name = " + "checkbox_for_option_"+i.toString()+"a <br>";
+                        str += " <textarea type='text' name=" + "value_for_option_" + i.toString() + "a  cols='140' rows='5' placeholder='Enter option'></textarea> <br>";
+                        str += "<br>";
+                        str += "</div> <br>";
+                        
+                        str += "<div id = 'option'" + i.toString() + "b> <br>";
+                        str += "b) ";
+                        str += "<input type = 'checkbox' name = " + "checkbox_for_option_"+i.toString()+"b <br>";
+                        str += "     <textarea type='text' name=" + "value_for_option_" + i.toString() + "b  cols='140' rows='5'  placeholder='Enter option'></textarea> <br>";
+                        str += "<br>";
+                        str += "</div> <br>";
+                        
+                        str += "<div id = 'option'" + i.toString() + "c> <br>";
+                        str += "c) ";
+                        str += "<input type = 'checkbox' name = " + "checkbox_for_option_"+i.toString()+"c <br>";
+                        str += "     <textarea type='text' name=" + "value_for_option_" + i.toString() + "c   cols='140' rows='5' placeholder='Enter option'></textarea> <br>";
+                        str += "<br>";
+                        str += "</div> <br>";
+                        
+                        str += "<div id = 'option'" + i.toString() + "d> <br>";
+                        str += "d) ";
+                        str += "<input type = 'checkbox' name = " + "checkbox_for_option_"+i.toString()+"d <br>";
+                        str += "     <textarea type='text' name=" + "value_for_option_" + i.toString() + "d   cols='140' rows='5' placeholder='Enter option'></textarea> <br>";
+                        str += "<br>";
+                        str += "</div> <br>";
+                        str += "</div> <br>";
+
+
+
+                        str += "<br><br><br>";
+
+                        // str += "<input typr"
+                    }
+
+                    document.getElementById("questions").innerHTML = str;
+
+                }
+            </script>
+        </form>
+    </div>
+</body>
+</html>

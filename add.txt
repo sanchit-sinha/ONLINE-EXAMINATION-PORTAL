@@ -1,0 +1,25 @@
+
+        // echo '<script>alert("User Name is not available")</script>'; 
+
+
+
+
+
+
+
+
+        // $insert = "INSERT INTO `Online_Examination_System`.`user_details` (`User_Name`, `Password`, `Full_Name`, `Mobile_Number`) VALUES ('$username', '$userpassword', '$userfullname', '$usermobilenumber');"        
+        
+        // if($conn->query($inser) == TRUE){
+        //     // echo "Successfully inserted";
+        //     include 'index.html';
+
+        // }
+        // else{
+        //     echo "ERROR: $sql <br> $con->error";
+        // }  
+
+
+
+
+
