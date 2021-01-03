@@ -6,6 +6,6 @@
 
     $conn = mysqli_connect($adminservername , $adminusername , $adminpassword , $admindbname);
     if(!$conn){
-        die("Connection failed due to 	");
+        die("Connection failed");
     }
 ?>
