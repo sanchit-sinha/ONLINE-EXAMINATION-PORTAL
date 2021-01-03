@@ -13,7 +13,7 @@
             $name = $row["Full_Name"];
 
             $isadmin = $row["isadmin"];
-            if($isadmin == 0) include 'users.php';
+            if($isadmin == 0) include 'USER/users.php';
             else {
                 header('Location: ADMIN/admin.php');
             }

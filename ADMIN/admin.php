@@ -57,7 +57,7 @@
                     </span>
                 </button> 
                 <br>
-                <div class="[row">
+                <div class="row">
                         <div class="col-xs-8 col-xs-offset-2">
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -87,7 +87,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+                </div>
                 <div id = "questions" style="display: none;">
                     <div id ="testname">
                         <h3>
