@@ -109,8 +109,8 @@
                             <div class="form-group">
                                 <input type="file" name="file1" />
                             </div>
-                            <div class="form-group">
-                                <input type="submit" name="submit" value="Upload" class="btn btn-info"/>
+                            <div class="form-group" id = "paper_upload" style="display: none;">
+                                <input type="submit" name="submit" value="Upload" class="btn btn-info" style="background-color:black; color:white" />
                             </div>
                             <div id = "display_responses">
                                 <h3>
@@ -143,6 +143,7 @@
                         </div>
                     </div>
 
+                    
                 </div>
 
 
@@ -232,6 +233,9 @@
                     }
 
                     function calulate_respones(){
+                        // paper_upload
+                        document.getElementById('paper_upload').style.display = "block";
+                        document.getElementById('paper_upload').style.color = "white";
                         var n = document.getElementById('numberofquestions').value;
                         str = "";
 
