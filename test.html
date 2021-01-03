@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,97 +6,6 @@
     <title>Document</title>
 </head>
 <body>
-
-    <div id ="tests">
-        <button onclick = "generate_response_sheet();">Generate Response Sheet</button>
-        <button onclick="calulate_respones();">GENERATE</button>
-        <div id = "test">
-            
-        </div>
-
-        <div id = "display">
-
-        </div>
-    </div>
-
-    <script>
-        function generate_response_sheet(){
-            var n = 5;
-            var str = "<h3>";
-            for(i = 1 ; i <= Number(n) ; i++){
-                if(i == 1){
-                    str += "<br><h2>CORRECT RESPONSE SHEET:</h2>";
-                }
-                
-                var num = i.toString();
-                str += num;
-
-                str += ": <input type=\"checkbox\" name=\""
-                str += num
-                str += "a\"" 
-                str += "id = \"" 
-                str += num 
-                str += "a\">"
-
-                str += ": <input type=\"checkbox\" name=\""
-                str += num
-                str += "b\"" 
-                str += "id = \"" 
-                str += num 
-                str += "b\">"
-
-                str += ": <input type=\"checkbox\" name=\""
-                str += num
-                str += "c\"" 
-                str += "id = \"" 
-                str += num 
-                str += "c\">"
-
-                str += ": <input type=\"checkbox\" name=\""
-                str += num
-                str += "d\"" 
-                str += "id = \"" 
-                str += num 
-                str += "d\">" + "<br>"
-
-            }
-            document.getElementById('test').innerHTML = str;
-        }
-        function calulate_respones(){
-            var n = 5;
-            str = "";
-
-            for(i = 1 ; i <= Number(n) ; i++){
-                var id1 = i.toString()+'a';
-                var id2 = i.toString()+'b';
-                var id3 = i.toString()+'c';
-                var id4 = i.toString()+'d';
-
-                var checkBox1 = document.getElementById(id1);
-                var checkBox2 = document.getElementById(id2);
-                var checkBox3 = document.getElementById(id3);
-                var checkBox4 = document.getElementById(id4);
-
-                if(checkBox1.checked == true){
-                    str += id1;
-                    str += "&";
-                }
-                if(checkBox2.checked == true){
-                    str += id2;
-                    str += "&";
-                }
-                if(checkBox3.checked == true){
-                    str += id3;
-                    str += "&";
-                }
-                if(checkBox4.checked == true){
-                    str += id4;
-                    str += "&";
-                }
-                str += "|";
-            }
-            document.getElementById("display").innerHTML = str;
-        }
-    </script>
+     START TIME : <input type = "datetime-local"> 
 </body>
 </html>

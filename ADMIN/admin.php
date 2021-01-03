@@ -13,7 +13,7 @@
     <title>ADMIN</title>
     <link rel="stylesheet" href="Assets/Css/style-admin.css">
     <style>
-        #numberofquestions ,#testname, #enter_manually, #upload_pdf, #responsegenerator{
+        #numberofquestions ,#testname, #enter_manually, #upload_pdf, #responsegenerator,#name_of_test{
             padding: 16px;
             /* margin: 8px; */
         }
@@ -41,11 +41,13 @@
     <div id = "container">
         <div id = "create_tests">
                 <h3>Enter the details of the new test</h3>
-                <h3 >TEST NAME : </h3>
-                <input type="text" id="testname" name = "testname" placeholder="Enter the name of the test"> <br><br>
-                <h3>NO. OF QUESTIONS : </h3>
-                <input type="number" id="numberofquestions" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
-                <br><br>
+                <form action="main.php">
+                    <h3 >TEST NAME : </h3>
+                    <input type = "text" id = "testname" name = "testname" placeholder = "Enter test name" onblur = "fill_testname();"> <br><br>
+                    <h3>NO. OF QUESTIONS : </h3>
+                    <input type="number" required id="numberofquestions" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
+                 </form>
+                    <br><br>
                 <button id = "enter_manually" onclick="make_questions_visible();">
                     <span id = "display_on_button_enter_manually" >ENTER MANUALLY</span>
                 </button> 
@@ -55,47 +57,7 @@
                     </span>
                 </button> 
                 <br>
-                <div id = "questions" style="display: none;">
-
-                </div>
-                <div id = "uploadpaper" style="display: none;">
-                    <div class="row">
-                        <div class="col-xs-8 col-xs-offset-2 well">
-                        <form action="upload.php" method="post" enctype="multipart/form-data">
-                            <legend><h3>Select File to Upload:</h3></legend>
-                            <div class="form-group">
-                                <input type="file" name="file1" />
-                            </div>
-                            <div class="form-group">
-                                <input type="submit" name="submit" value="Upload" class="btn btn-info"/>
-                            </div>
-                            <div id = "display_responses">
-                                <h3>
-                                    Correct Responses: <input type="text" required name = "display_correct_responses" id = "display_correct_responses" readonly> 
-                                </h3>
-                            </div>
-                            <?php if(isset($_GET['st'])) { ?>
-                                <div class="alert alert-danger text-center">
-                                <?php if ($_GET['st'] == 'success') {
-                                        echo "File Uploaded Successfully!";
-                                    }
-                                    else
-                                    {
-                                        echo 'Invalid File Extension!';
-                                    } ?>
-                                </div>
-                            <?php } ?>
-                        </form>
-                        </div>
-                    </div>
-                    <div id = "response_sheets">
-                        <div id = "correct_response">
-                        
-                    
-                        </div>
-                    </div>
-
-                    <div class="row">
+                <div class="[row">
                         <div class="col-xs-8 col-xs-offset-2">
                             <table class="table table-striped table-hover">
                                 <thead>
@@ -126,10 +88,71 @@
                             </table>
                         </div>
                     </div>
+                <div id = "questions" style="display: none;">
+                    <div id ="testname">
+                        <h3>
+                            TEST NAME: <input type="text" required name = "name_of_test1" id = "name_of_test1" readonly> 
+                            NO. OF QUESTIONS: <input type="number" required name = "no_ofques1" id = "no_ofques1" readonly><br>
+                            START TIME : <input name = "starttime1" type = "datetime-local"> 
+                            END TIME : <input name = "endtime1" type = "datetime-local">  <br>
+                        </h3>
+                    </div>
+                    <div id = "allquestions" >
+                        
+                    </div>
+                </div>
+                <div id = "uploadpaper" style="display: none;">
+                    <div class="row">
+                        <div class="col-xs-8 col-xs-offset-2 well">
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <legend><h3>Select File to Upload:</h3></legend>
+                            <div class="form-group">
+                                <input type="file" name="file1" />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" value="Upload" class="btn btn-info"/>
+                            </div>
+                            <div id = "display_responses">
+                                <h3>
+                                TEST NAME: <input type="text" required name = "name_of_test2" id = "name_of_test2" readonly><br>
+                                NO. OF QUESTIONS: <input type="number" required name = "no_ofques2" id = "no_ofques2" readonly><br>
+                                START TIME : <input name = "starttime2" type = "datetime-local"> 
+                                END TIME : <input name = "endtime2" type = "datetime-local">  <br>
+                                Correct Responses: <input type="text" required name = "display_correct_responses" id = "display_correct_responses" readonly> 
+                                Total Marks: <input type="number" required name = "total_marks2" id = "total_marks2" required> 
+                                </h3>
+                            </div>
+                            <?php if(isset($_GET['st'])) { ?>
+                                <div class="alert alert-danger text-center">
+                                <?php if ($_GET['st'] == 'success') {
+                                        echo "File Uploaded Successfully!";
+                                    }
+                                    else
+                                    {
+                                        echo 'Invalid File Extension!';
+                                    } ?>
+                                </div>
+                            <?php } ?>
+                        </form>
+                        </div>
+                    </div>
+                    <div id = "response_sheets">
+                        <div id = "correct_response">
+                        
+                    
+                        </div>
+                    </div>
+
                 </div>
 
 
                 <script>
+                    function fill_testname(){
+                        var username = document.getElementById('testname').value;
+                        
+                        document.getElementById('name_of_test1').value = username;
+                        document.getElementById('name_of_test2').value = username;
+                    }
                     function make_questions_visible(){
                         if(document.getElementById('questions').style.display == 'none') {
                             document.getElementById('questions').style.display = 'block';
@@ -162,6 +185,9 @@
 
                     function generate_response_sheet(){
                         var n = document.getElementById('numberofquestions').value;
+                        document.getElementById('no_ofques1').value = n;
+                        document.getElementById('no_ofques2').value = n;
+                       
                         var str = "<h3>";
                         for(i = 1 ; i <= Number(n) ; i++){
                             if(i == 1){
@@ -302,7 +328,7 @@
                             // str += "<input typr"
                         }
 
-                        document.getElementById("questions").innerHTML = str;
+                        document.getElementById("allquestions").innerHTML = str;
                     }
                 </script>
         </div>

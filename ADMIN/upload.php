@@ -5,16 +5,13 @@ include '../connecting_database.php';
 //check if form is submitted
 if (isset($_POST['submit']))
 {
-    $testname = $_POST['testname'];
+    $testname = $_POST['name_of_test2'];
     $filename = $_FILES['file1']['name'];
     $correctresponse = $_POST['display_correct_responses'];
-
-    echo $testname . "<br>";
-    echo $filename . "<br>";
-    echo $correctresponse . "<br>";
-
-    exit();
-
+    $total_questions = $_POST['no_ofques2'];
+    $starttime = $_POST['starttime2'];
+    $endtime = $_POST['endtime2'];
+    $totalmarks = $_POST['total_marks2'];
     //upload file
     if($filename != '')
     {
@@ -29,6 +26,8 @@ if (isset($_POST['submit']))
 
             $sql = "INSERT INTO `Online_Examination_System`.`uploaded_test_details` (`test_name`, `file_name`, `correct_response`) VALUES('$testname', '$filename','$correctresponse')";
             mysqli_query($conn, $sql);
+            $sql2 = "INSERT INTO `Online_Examination_System`.`test_details` (`test_name`, `total_questions`, `total_marks`, `start_time`, `end_time`, `correct_responses`) VALUES('$testname', '$total_questions','$totalmarks','$starttime','$endtime','$correctresponse')";
+            mysqli_query($conn, $sql2);
             header("Location: admin.php?st=success");
         }
         else
