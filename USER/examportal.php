@@ -103,15 +103,7 @@
                         $mn1 = $split['minute'];
                         $msc1 = 0;
 
-                        $split2 = date_parse_from_format('Y-m-d h:i:s', $currenttime);
-               
-                        $yr2 = $split2['year'];
-                        $mnth2 = $split2['month'];
-                        $dy2 = $split2['day'];
-                        $hr2 = $split2['hour'];
-                        $sc2 = $split2['second'];
-                        $mn2 = $split2['minute'];
-                        $msc2 = 0;
+                        
 
                     ?>  
             <?php } ?>
@@ -134,6 +126,19 @@
         var x = setInterval(function() {
 
         // Get today's date and time
+        <?php
+            date_default_timezone_set('Asia/Kolkata');
+            $noww = date('Y-m-d H:i:s');
+            $split2 = date_parse_from_format('Y-m-d h:i:s', $noww);
+               
+            $yr2 = $split2['year'];
+            $mnth2 = $split2['month'];
+            $dy2 = $split2['day'];
+            $hr2 = $split2['hour'];
+            $sc2 = $split2['second'];
+            $mn2 = $split2['minute'];
+            $msc2 = 0;
+        ?>
         var yrr1 = <?php echo $yr2; ?>;
         var mnthr1 = <?php echo $mnth2; ?>;
         var dyr1 = <?php echo $dy2; ?>;
