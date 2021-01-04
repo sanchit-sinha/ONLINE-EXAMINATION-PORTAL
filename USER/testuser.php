@@ -142,7 +142,6 @@
                         <tr>
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
-                            <th><h3>File Name</h3></th>
                             <th><h3>Total Questions </h3></th>
                             <th><h3>Total Marks</h3></th>
                             <!-- Subject to change on manual uploading -->
@@ -160,11 +159,20 @@
                                 $nques = $attempted[$i1][1];
                                 $tmark = $attempted[$i1][2];
                                 $tfpath = $attempted[$i1][3];
-                            ?>
 
+                                // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
+                            ?>
                             <!-- continue -->
+                            <td><?php echo $i1+1; ?></td>
+                            <td><?php echo $tname; ?></td>
+                            <td><?php echo $nques; ?></td>
+                            <td><?php echo $tmark; ?></td>
+                            <!-- Subject to change on manual uploading -->
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></td>
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</td>
                         </tr>
                         <?php } ?>
+
                 </table>
             </div>
             <div id = "Notattempted_tests">
@@ -174,7 +182,6 @@
                         <tr>
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
-                            <th><h3>File Name</h3></th>
                             <th><h3>Total Questions </h3></th>
                             <th><h3>Total Marks</h3></th>
                             <!-- Subject to change on manual uploading -->
@@ -184,6 +191,27 @@
                             <!-- <th><h3>View Mistakes</h3></th> -->
                         </tr>
                     </thead>
+
+                    <?php for ($i1 = 0; $i1 < count($notattempted); $i1++) { ?>
+                        <tr>
+                            <?php 
+                                $tname = $notattempted[$i1][0];
+                                $nques = $notattempted[$i1][1];
+                                $tmark = $notattempted[$i1][2];
+                                $tfpath = $notattempted[$i1][3];
+
+                                // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
+                            ?>
+                            <!-- continue -->
+                            <td><?php echo $i1+1; ?></td>
+                            <td><?php echo $tname; ?></td>
+                            <td><?php echo $nques; ?></td>
+                            <td><?php echo $tmark; ?></td>
+                            <!-- Subject to change on manual uploading -->
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></td>
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</td>
+                        </tr>
+                    <?php } ?>
                 </table>
             </div>
             <div id = "Upcoming_tests">
@@ -193,7 +221,6 @@
                         <tr>
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
-                            <th><h3>File Name</h3></th>
                             <th><h3>Total Questions </h3></th>
                             <th><h3>Total Marks</h3></th>
                             <!-- Subject to change on manual uploading -->
@@ -203,6 +230,26 @@
                             <!-- <th><h3>View Mistakes</h3></th> -->
                         </tr>
                     </thead>
+                    <?php for ($i1 = 0; $i1 < count($upcoming); $i1++) { ?>
+                        <tr>
+                            <?php 
+                                $tname = $upcoming[$i1][0];
+                                $nques = $upcoming[$i1][1];
+                                $tmark = $upcoming[$i1][2];
+                                $tfpath = $upcoming[$i1][3];
+
+                                // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
+                            ?>
+                            <!-- continue -->
+                            <td><?php echo $i1+1; ?></td>
+                            <td><?php echo $tname; ?></td>
+                            <td><?php echo $nques; ?></td>
+                            <td><?php echo $tmark; ?></td>
+                            <!-- Subject to change on manual uploading -->
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></td>
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</td>
+                        </tr>
+                    <?php } ?>
                 </table>
             </div>
             <div id = "Live_tests">
@@ -212,7 +259,6 @@
                         <tr>
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
-                            <th><h3>File Name</h3></th>
                             <th><h3>Total Questions </h3></th>
                             <th><h3>Total Marks</h3></th>
                             <!-- Subject to change on manual uploading -->
@@ -222,6 +268,28 @@
                             <!-- <th><h3>View Mistakes</h3></th> -->
                         </tr>
                     </thead>
+
+                    <?php for ($i1 = 0; $i1 < count($live); $i1++) { ?>
+                        <tr>
+                            <?php 
+                                $tname = $live[$i1][0];
+                                $nques = $live[$i1][1];
+                                $tmark = $live[$i1][2];
+                                $tfpath = $live[$i1][3];
+
+                                // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
+                            ?>
+                            <!-- continue -->
+                            <td><?php echo $i1+1; ?></td>
+                            <td><?php echo $tname; ?></td>
+                            <td><?php echo $nques; ?></td>
+                            <td><?php echo $tmark; ?></td>
+                            <!-- Subject to change on manual uploading -->
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></td>
+                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</td>
+                            <td><a href="examportal.html">Give Exam</a></td>
+                        </tr>
+                    <?php } ?>
                 </table>
             </div>
             

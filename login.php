@@ -9,11 +9,13 @@
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $user = $row["User_Name"];
-            $name = $row["Full_Name"];
+            session_start();
+            $_SESSION["username"] = $row["User_Name"];
+            $_SESSION["fullname"]= $row["Full_Name"];
 
             $isadmin = $row["isadmin"];
-            if($isadmin == 0) include 'USER/users.php';
+            $link = $user . ".php";
+            if($isadmin == 0) header('Location: USER/users.php');
             else {
                 header('Location: ADMIN/admin.php');
             }
