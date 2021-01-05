@@ -47,7 +47,7 @@
     <div class="sidenav">
         <!-- change -->
         <a href="users.php">TESTS</a><br><br>
-        <a href="examportal.html">EXAM PORTAL</a><br><br>
+        <a href="examportal.php">EXAM PORTAL</a><br><br>
       </div>
 
       <div id = "logout" style="text-align: right;">

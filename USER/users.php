@@ -275,8 +275,6 @@
                         <tr class="w3-blue">
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
-                            <th><h3>Total Questions </h3></th>
-                            <th><h3>Total Marks</h3></th>
                             <!-- Subject to change on manual uploading -->
                             <th><h3>Start Time</h3></th>
                             <th><h3>End Time</h3></th>
@@ -298,8 +296,6 @@
                             <!-- continue -->
                             <td><?php echo $i1+1; ?></td>
                             <td><?php echo $tname; ?></td>
-                            <td><?php echo $nques; ?></td>
-                            <td><?php echo $tmark; ?></td>
                             <!-- Subject to change on manual uploading -->
                             <td><?php echo $st; ?></td>
                             <td><?php echo $et; ?></td>

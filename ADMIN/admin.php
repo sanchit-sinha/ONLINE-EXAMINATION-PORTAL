@@ -85,6 +85,7 @@
 </head>
 <body>
     <div class="sidenav">
+        <a href="../index.html"> BACK</a><br><br>
         <a href="admin.php">CREATE TESTS</a><br><br>
         <a href="user_analysis.php">USER ANALYSIS</a><br><br>
         <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
