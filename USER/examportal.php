@@ -38,6 +38,9 @@
             -webkit-transform: scale(2);
             padding: 10px;
         }
+        table, th, td {
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body onload = "starttimer(); generate_responses();">
@@ -196,6 +199,7 @@
             for(i = 1 ; i <= Number(n) ; i++){
                 if(i == 1){
                     str += "<p>USER RESPONSE SHEET:</p>";
+                    str += "<p>Marking scheme for each question : [+4 , -2] </p>"
                 }
                 
                 var num = i.toString();

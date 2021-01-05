@@ -34,6 +34,12 @@
         h2{
             color : rgb(2, 108, 149);
         }
+        table, th, td {
+            border: 1px solid black;
+        }
+        h3{
+            text-align : center;
+        }
     </style>
 </head>
 <body>
@@ -164,10 +170,10 @@
                                 // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
                             ?>
                             <!-- continue -->
-                            <td><span style="color: red;"><?php echo $i1+1; ?></span></td>
-                            <td><span style="color: red;"><?php echo $tname; ?></span></td>
-                            <td><span style="color: red;"><?php echo $nques; ?></span></td>
-                            <td><span style="color: red;"><?php echo $tmark; ?></span></td>
+                            <td><span style="color: red; text-align:center;"><?php echo $i1+1; ?></span></td>
+                            <td><span style="color: red; text-align:center;"><?php echo $tname; ?></span></td>
+                            <td><span style="color: red; text-align:center;"><?php echo $nques; ?></span></td>
+                            <td><span style="color: red; text-align:center;"><?php echo $tmark; ?></span></td>
                             <!-- Subject to change on manual uploading -->
                             <td><a href="examportal.php"><span style="color: red;font-size:20px">Give Exam</span></a><td>
                         </tr>
@@ -188,6 +194,7 @@
                             <!-- Subject to change on manual uploading -->
                             <th><h3>View-Paper</h3></th>
                             <th><h3>Download-Paper</h3></th>
+                            <th><h3>Test Analysis</h3></th>
                             <!-- incorporate later -->
                             <!-- <th><h3>View Mistakes</h3></th> -->
                         </tr>
@@ -205,14 +212,15 @@
                                 // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
                             ?>
                             <!-- continue -->
-                            <td><span style="color: green;"><?php echo $i1+1; ?></span></td>
-                            <td><span style="color: green;"><?php echo $tname; ?></span></td>
-                            <td><span style="color: green;"><?php echo $nques; ?></span></td>
-                            <td><span style="color: green;"><?php echo $tmark; ?></span></td>
-                            <td><span style="color: green;"><?php echo $umarks; ?></span></td>
+                            <td><span style="color: green; text-align:center;"><?php echo $i1+1; ?></span></td>
+                            <td><span style="color: green; text-align:center;"><?php echo $tname; ?></span></td>
+                            <td><span style="color: green; text-align:center;"><?php echo $nques; ?></span></td>
+                            <td><span style="color: green; text-align:center;"><?php echo $tmark; ?></span></td>
+                            <td><span style="color: green; text-align:center;"><?php echo $umarks; ?></span></td>
                             <!-- Subject to change on manual uploading -->
-                            <td><span style="color: green;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></span></td>
-                            <td><span style="color: rgreened;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</span></td>
+                            <td><span style="color: green; text-align:center;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></span></td>
+                            <td><span style="color:green; text-align:center;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</span></td>
+                            <td><span style="color:green; text-align:center;"><a href="analysis.php?username=<?php echo $user; ?>&testname=<?php echo $tname; ?>" target="_blank" >Test Analysis</span></td>
                         </tr>
                         <?php } ?>
 

@@ -56,7 +56,7 @@ include '../connecting_database.php';
     //     }
     // }
 
-    $len =  strlen($userresponse);
+    $len =  strlen($correctresponse);
     $index = 0;
     for($i = 1 ; $i < $len;$i++){
         if($correctresponse[$i] == '&'){
@@ -78,7 +78,8 @@ include '../connecting_database.php';
     }
 
     $index =0 ;
-    for($i = 1 ; $i < $len;$i++){
+    $len =  strlen($userresponse);
+        for($i = 1 ; $i < $len;$i++){
         if($userresponse[$i] == '&'){
             $c = $userresponse[$i - 1];
             if($c === 'a'){
@@ -127,6 +128,10 @@ include '../connecting_database.php';
     // echo $qcorrect."<br>";
     // echo $qincorrect."<br>";
     // echo $qleft."<br>";
+
+
+    $_SESSION['userans'] = $userresponsesheet;
+    $_SESSION['correctans'] = $correctresponsesheet;
 
     $umarks = $qleft * 0 + $qcorrect * 4 - $qincorrect * 2;
     // INSERT INTO `user_tests` (`S No.`, `User_Name`, `test_name`, `submission_time`, `correct_questions`, `incorrect_questions`, `unattempted_questions`, `user_response`, `user_marks`) VALUES (NULL, 'Sam92', 'paper6', NULL, NULL, NULL, NULL, NULL, NULL);
