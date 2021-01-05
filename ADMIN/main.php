@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
     <link rel="stylesheet" href="Assets/Css/style-admin.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         #numberofquestions ,#testname, #enter_manually, #upload_pdf, #responsegenerator,#name_of_test{
             padding: 16px;
@@ -46,10 +47,10 @@
             <h3>NO. OF QUESTIONS : </h3>
                 <input type="number" id="numberofquestions" name="numberofquestions" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
                 <br><br>
-            <button id = "enter_manually" onclick="make_questions_visible();">
+            <button id = "enter_manually" onclick="make_questions_visible();" class="w3-button w3-green">
                 <span id = "display_on_button_enter_manually" >ENTER MANUALLY</span>
             </button> 
-            <button id = "upload_pdf" onclick="make_upload_panel_visible();">
+            <button id = "upload_pdf" onclick="make_upload_panel_visible();" class="w3-button w3-green">
                 <span id="disaply_on_button_upload">
                     UPLOAD
                 </span>
@@ -207,7 +208,7 @@
 
                     }
                     str += "</h3> <br>";
-                    str += "<button id = 'responsegenerator' onclick = 'calulate_respones();'> CALCULATE CORRECT RESPONSE  </button>";
+                    str += "<button id = 'responsegenerator' onclick = 'calulate_respones();' class='w3-button w3-green'> CALCULATE CORRECT RESPONSE  </button>";
                     document.getElementById("correct_response").innerHTML = str;
                 }
 

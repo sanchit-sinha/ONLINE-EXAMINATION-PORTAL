@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Portal</title>
     <link rel="stylesheet" href="Assets/Css/style-user.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body{
             background-image: url("../assets/images/bg.jpeg");
@@ -47,16 +48,16 @@
       </div>
 
       <div id = "logout" style="text-align: right;">
-            <button onclick="logout_user">
+            <button onclick="logout_user" class="w3-button w3-green">
                 <a href="../logout.php">LOGOUT</a>
             </button>
         </div>
     <div id = "livetest">
         <h1>Welcome to your Exam Portal!!</h1>
-        <div id = "user_details" style="text-align:center; margin-left:40%;">
-            <table class = "details">
+        <div id = "user_details" style=" margin-left:8%; margin-right:1%;">
+            <table class = "details w3-table-all">
             <thead>
-                    <tr>
+                    <tr class = "w3-red">
                         <th><h3>#</h3></th>
                         <th><h3>User Name</h3></th>
                         <th><h3>Test Name </h3></th>
@@ -230,7 +231,7 @@
 
             }
             str += "</h3>" ;
-            str += "<button id = 'submit' onclick = 'calulate_respones();'> SUBMIT  </button>";
+            str += "<button id = 'submit' onclick = 'calulate_respones();' class='w3-button w3-green'> SUBMIT  </button>";
             document.getElementById("responsesheet").innerHTML = str;
         }
     </script>

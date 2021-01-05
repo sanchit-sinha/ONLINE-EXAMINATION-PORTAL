@@ -12,7 +12,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
     <link rel="stylesheet" href="Assets/Css/style-admin.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
+        body{
+            background-image: url("../assets/images/bg.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+            /* margin-top: 15%; */
+        }
         #numberofquestions ,#testname, #enter_manually, #upload_pdf, #responsegenerator,#name_of_test{
             padding: 16px;
             /* margin: 8px; */
@@ -28,6 +36,47 @@
         }
         button{
             cursor: pointer;
+        }
+        input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=number], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=datetime-local], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        }
+        input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+        background-color: #45a049;
         }
     </style>
 </head>
@@ -48,10 +97,10 @@
                     <input type="number" required id="numberofquestions" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
                  </form>
                     <br><br>
-                <button id = "enter_manually" onclick="make_questions_visible();">
+                <button id = "enter_manually" onclick="make_questions_visible();" class="w3-button w3-green">
                     <span id = "display_on_button_enter_manually" >ENTER MANUALLY</span>
                 </button> 
-                <button id = "upload_pdf" onclick="make_upload_panel_visible();">
+                <button id = "upload_pdf" onclick="make_upload_panel_visible();" class="w3-button w3-green">
                     <span id="disaply_on_button_upload">
                         UPLOAD
                     </span>
@@ -59,9 +108,9 @@
                 <br>
                 <div class="row">
                         <div class="col-xs-8 col-xs-offset-2">
-                            <table class="table table-striped table-hover">
+                            <table class="table table-striped table-hover w3-table-all">
                                 <thead>
-                                    <tr>
+                                    <tr class = "w3-red"> 
                                         <br><br>
                                         <th><h3>#</h3></th>
                                         <th><h3>Test Name</h3></th>
@@ -116,10 +165,10 @@
                                 <h3>
                                 TEST NAME: <input type="text" required name = "name_of_test2" id = "name_of_test2" readonly><br>
                                 NO. OF QUESTIONS: <input type="number" required name = "no_ofques2" id = "no_ofques2" readonly><br>
-                                START TIME : <input name = "starttime2" type = "datetime-local"> 
+                                START TIME : <input name = "starttime2" type = "datetime-local"> <br>
                                 END TIME : <input name = "endtime2" type = "datetime-local">  <br>
-                                Correct Responses: <input type="text" required name = "display_correct_responses" id = "display_correct_responses" readonly> 
-                                Total Marks: <input type="number" required name = "total_marks2" id = "total_marks2" required> 
+                                Correct Responses: <input type="text" required name = "display_correct_responses" id = "display_correct_responses" readonly> <br>
+                                Total Marks: <input type="number" required name = "total_marks2" id = "total_marks2" required> <br>
                                 </h3>
                             </div>
                             <?php if(isset($_GET['st'])) { ?>
@@ -228,7 +277,7 @@
 
                         }
                         str += "</h3> <br>";
-                        str += "<button id = 'responsegenerator' onclick = 'calulate_respones();'> CALCULATE CORRECT RESPONSE  </button>";
+                        str += "<button id = 'responsegenerator' onclick = 'calulate_respones();' class='w3-button w3-green'> CALCULATE CORRECT RESPONSE  </button>";
                         document.getElementById("correct_response").innerHTML = str;
                     }
 
