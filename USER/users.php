@@ -73,7 +73,7 @@
             while($row1 = mysqli_fetch_array($result1)) { ?>
                 <?php
                     $testname = $row1['test_name'];
-                    $sql2 = "SELECT * from user_tests WHERE test_name = '$testname'";
+                    $sql2 = "SELECT * from user_tests WHERE test_name = '$testname' AND User_Name = '$user'";
                     $result2 = mysqli_query($conn, $sql2);
                     $row2 = mysqli_fetch_array($result2);
                 ?>
@@ -83,6 +83,7 @@
                     $submissiontime = $row2['submission_time'];
                     $marksobtained = $row2['user_marks'];
 
+                    $uuser = $row2['User_Name'];
                     date_default_timezone_set('Asia/Kolkata');
                     $currenttime = date('Y-m-d H:i:s');
 
@@ -105,8 +106,8 @@
                     // echo $totalmarks."<br>";
                     // echo $testfilepath."<br>";
 
-                    if(($submissiontime != NULL) && ($submissiontime <= $endtime)){
-                        // attempted
+                    if(($submissiontime != NULL) && ($submissiontime <= $endtime) && ($uuser == $user)){
+                        // attempted 
                         $arr = array();
                         array_push($arr , $testname , $totalquestions , $totalmarks ,$marksobtained, $testfilepath);
                         array_push($attempted , $arr);
@@ -218,7 +219,6 @@
                     <?php } ?>
                 </table>
             </div>
-            <div id = "Upcoming_tests">
                 <h2 style="text-align:left">UPCOMING</h2>
                 <table class="table table-striped table-hover">
                     <thead>
