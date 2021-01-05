@@ -240,6 +240,8 @@
                         str = "";
 
                         for(i = 1 ; i <= Number(n) ; i++){
+                            if(i == 1) str += "|";
+                            
                             var id1 = i.toString()+'a';
                             var id2 = i.toString()+'b';
                             var id3 = i.toString()+'c';

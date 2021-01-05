@@ -1,1 +1,56 @@
 <?php $yr , $mnth, $dy, $hr, $mn, $sc , 0 ?>
+
+        var countDownDate1 = new Date("<?php echo $monthName . " " . $dy1 . " ".",".$yr1 ." $hr1".":".$mn1.":".$sc1;?>").getTime();
+
+
+function generate_response_sheet(){
+                        var n = document.getElementById('numberofquestions').value;
+                        document.getElementById('no_ofques1').value = n;
+                        document.getElementById('no_ofques2').value = n;
+                       
+                        var n = <?php $row2['total_questions'] ?>;
+        var str = "<h3>";
+        for(i = 1 ; i <= Number(n) ; i++){
+            if(i == 1){
+                str += "<br><h2>CORRECT RESPONSE SHEET:</h2>";
+            }
+            
+            var num = i.toString();
+            str += num;
+
+            str += ": <input type=\"checkbox\" name=\""
+            str += num
+            str += "a\"" 
+            str += "id = \"" 
+            str += num 
+            str += "a\">"
+
+            str += ": <input type=\"checkbox\" name=\""
+            str += num
+            str += "b\"" 
+            str += "id = \"" 
+            str += num 
+            str += "b\">"
+
+            str += ": <input type=\"checkbox\" name=\""
+            str += num
+            str += "c\"" 
+            str += "id = \"" 
+            str += num 
+            str += "c\">"
+
+            str += ": <input type=\"checkbox\" name=\""
+            str += num
+            str += "d\"" 
+            str += "id = \"" 
+            str += num 
+            str += "d\">" + "<br>"
+
+        }
+        str += "</h3> <br>";
+        str += "<button id = 'responsegenerator' onclick = 'calulate_respones();'> CALCULATE CORRECT RESPONSE  </button>";
+        document.getElementById("correct_response").innerHTML = str;
+                    }
+
+
+                    <?php $row2['total_questions'] ?>

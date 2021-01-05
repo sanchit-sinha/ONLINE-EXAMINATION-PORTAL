@@ -4,7 +4,7 @@
     session_start();
     $user = $_SESSION["username"];
     include '../connecting_database.php';
-    $sql1 = "SELECT * from user_tests WHERE User_Name = '$user'";
+    $sql1 = "SELECT * from test_details";
     $result1 = mysqli_query($conn, $sql1);
 ?>
 
@@ -18,6 +18,13 @@
     </title>
     <link rel="stylesheet" href="Assets/Css/style-user.css">
     <style>
+        body{
+            background-image: url("../assets/images/bg.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+            /* margin-top: 15%; */
+        }
         #container{
             /* text-align: center; */
             display: block ;
@@ -62,44 +69,37 @@
 
         <?php
             $i = 1;
+            // test_details column
             while($row1 = mysqli_fetch_array($result1)) { ?>
                 <?php
                     $testname = $row1['test_name'];
-                    $sql2 = "SELECT * from test_details WHERE test_name = '$testname'";
+                    $sql2 = "SELECT * from user_tests WHERE test_name = '$testname'";
                     $result2 = mysqli_query($conn, $sql2);
-                    $row2 = mysqli_fetch_array($result2)
+                    $row2 = mysqli_fetch_array($result2);
                 ?>
                 <?php
-                    $starttime = $row2['start_time'];
-                    $endtime = $row2['end_time'];
-                    $submissiontime = $row1['submission_time'];
+                    $starttime = $row1['start_time'];
+                    $endtime = $row1['end_time'];
+                    $submissiontime = $row2['submission_time'];
+                    $marksobtained = $row2['user_marks'];
 
                     date_default_timezone_set('Asia/Kolkata');
                     $currenttime = date('Y-m-d H:i:s');
 
                     // DEBUG
-                    // echo $row2['start_time'];
-                    // echo $endtime."<br>"; 
-                    // if($submissiontime == NULL){
-                    //     echo "got";
-                    // }
-                    // if($submissiontime <= $endtime){
-                    //     echo "gotattemp";
-                    // }
-                    // echo $submissiontime."<br>"; 
-                    // if($submissiontime != NULL and ($submissiontime <= $endtime)){
-                    //     echo "got";
-                    // }
-
+                    // echo $testname."<br>";
+                    // echo $starttime."<br>";
+                    // echo $endtime."<br>";
+                    // echo $submissiontime."<br>";
+                    // if($submissiontime == NULL) echo $testname."<br>";
+                    // echo $currenttime."<br>";
                 ?>
 
                 <?php
                     // testname totalquestions totalmarks view-paper download-paper
-                    $testname = $row1['test_name'];
-                    $totalquestions = $row2['total_questions'];
-                    $totalmarks = $row2['total_marks'];
+                    $totalquestions = $row1['total_questions'];
+                    $totalmarks = $row1['total_marks'];
                     $testfilepath = "../uploads/" . $row1['test_name'].".pdf";  
-
                     // echo $testname."<br>";
                     // echo $totalquestions."<br>";
                     // echo $totalmarks."<br>";
@@ -108,7 +108,7 @@
                     if(($submissiontime != NULL) && ($submissiontime <= $endtime)){
                         // attempted
                         $arr = array();
-                        array_push($arr , $testname , $totalquestions , $totalmarks , $testfilepath);
+                        array_push($arr , $testname , $totalquestions , $totalmarks ,$marksobtained, $testfilepath);
                         array_push($attempted , $arr);
                     }
                     if(($submissiontime == NULL) && ($currenttime > $endtime)){
@@ -137,7 +137,7 @@
 
 
             <div id = "Attempted_tests">
-                <h2>ATTEMPTED</h2>
+                <h2 style="text-align:left">ATTEMPTED</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -145,6 +145,7 @@
                             <th><h3>Test Name</h3></th>
                             <th><h3>Total Questions </h3></th>
                             <th><h3>Total Marks</h3></th>
+                            <th><h3>Marks Obtained</h3></th>
                             <!-- Subject to change on manual uploading -->
                             <th><h3>View-Paper</h3></th>
                             <th><h3>Download-Paper</h3></th>
@@ -159,25 +160,27 @@
                                 $tname = $attempted[$i1][0];
                                 $nques = $attempted[$i1][1];
                                 $tmark = $attempted[$i1][2];
-                                $tfpath = $attempted[$i1][3];
+                                $umarks = $attempted[$i1][3];
+                                $tfpath = $attempted[$i1][4];
 
                                 // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
                             ?>
                             <!-- continue -->
-                            <td><?php echo $i1+1; ?></td>
-                            <td><?php echo $tname; ?></td>
-                            <td><?php echo $nques; ?></td>
-                            <td><?php echo $tmark; ?></td>
+                            <td><span style="color: green;"><?php echo $i1+1; ?></span></td>
+                            <td><span style="color: green;"><?php echo $tname; ?></span></td>
+                            <td><span style="color: green;"><?php echo $nques; ?></span></td>
+                            <td><span style="color: green;"><?php echo $tmark; ?></span></td>
+                            <td><span style="color: green;"><?php echo $umarks; ?></span></td>
                             <!-- Subject to change on manual uploading -->
-                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></td>
-                            <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</td>
+                            <td><span style="color: green;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></span></td>
+                            <td><span style="color: rgreened;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</span></td>
                         </tr>
                         <?php } ?>
 
                 </table>
             </div>
             <div id = "Notattempted_tests">
-                <h2>NOT ATTEMPTED TESTS</h2>
+                <h2 style="text-align:left">NOT ATTEMPTED TESTS</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -205,7 +208,7 @@
                             ?>
                             <!-- continue -->
                             <td><?php echo $i1+1; ?></td>
-                            <td><?php echo $live[0][1]; ?></td>
+                            <td><?php echo $tname; ?></td>
                             <td><?php echo $nques; ?></td>
                             <td><?php echo $tmark; ?></td>
                             <!-- Subject to change on manual uploading -->
@@ -216,7 +219,7 @@
                 </table>
             </div>
             <div id = "Upcoming_tests">
-                <h2>UPCOMING</h2>
+                <h2 style="text-align:left">UPCOMING</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -254,7 +257,7 @@
                 </table>
             </div>
             <div id = "Live_tests">
-                <h2>TESTS LIVE</h2>
+                <h2 style="text-align:left"> TESTS LIVE</h2>
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>

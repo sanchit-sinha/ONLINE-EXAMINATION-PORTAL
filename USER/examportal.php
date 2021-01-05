@@ -3,7 +3,7 @@
     $user = $_SESSION["username"];
     $fname = $_SESSION["fullname"];
     include '../connecting_database.php';
-    $sql1 = "SELECT * from user_tests WHERE User_Name = '$user'";
+    $sql1 = "SELECT * from test_details";
     $result1 = mysqli_query($conn, $sql1);
 ?>
 <!DOCTYPE html>
@@ -14,14 +14,32 @@
     <title>Exam Portal</title>
     <link rel="stylesheet" href="Assets/Css/style-user.css">
     <style>
+        body{
+            background-image: url("../assets/images/bg.jpeg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            text-align: center;
+            /* margin-top: 15%; */
+        }
         #livetest{
             text-align: center;
             display: block ;
             /* max-width: 15vw; */
         }
+        #submit{
+            padding:10px;
+            color:white;
+            background-color:green;
+        }
+        input[type=checkbox] {
+            transform: scale(2);
+            -ms-transform: scale(2);
+            -webkit-transform: scale(2);
+            padding: 10px;
+        }
     </style>
 </head>
-<body>
+<body onload = "starttimer(); generate_responses();">
     <div class="sidenav">
         <!-- change -->
         <a href="users.php">TESTS</a><br><br>
@@ -54,28 +72,38 @@
                 while($row1 = mysqli_fetch_array($result1)) { ?>
                 <tr>
                     <?php
-                        $tname = $row1['test_name'];
-                        $sql2 = "SELECT * from test_details WHERE test_name = '$tname'";
+                        $sql2 = "SELECT * from user_tests WHERE test_name = '$testname'";
                         $result2 = mysqli_query($conn, $sql2);
-                        $row2 = mysqli_fetch_array($result2)
+                        $row2 = mysqli_fetch_array($result2);
                     ?>
 
                     <?php
-                        $starttime = $row2['start_time'];
-                        $endtime = $row2['end_time'];
-                        $submissiontime = $row1['submission_time'];
-
+                        
+                        $stime = $row1['start_time'];
+                        $etime = $row1['end_time'];
+                        $submissiontime = $row2['submission_time'];
                         date_default_timezone_set('Asia/Kolkata');
                         $currenttime = date('Y-m-d H:i:s');
+            
                     ?>
-                    
+                
                     <?php
-                        if(($submissiontime == NULL) && ($starttime <= $currenttime) && ($currenttime <= $endtime)){ ?>
+                        if(($submissiontime == NULL) && ($stime <= $currenttime) && ($currenttime <= $etime)){ ?>
+                            <?php 
+                                $tname = $row1['test_name'];
+                                $tques = $row1['total_questions'];
+                                $tmarks = $row1['total_marks'];
+                                $correctresponse = $row1['correct_responses'];
+                                
+                                $starttime = $stime;
+                                $endtime = $etime;
+                            ?>
+
                             <td><?php echo $i++; ?></td>
                             <td><?php echo $user; ?></td>
                             <td><?php echo $tname; ?></td>
-                            <td><?php echo $row2['total_questions']; ?></td>
-                            <td><?php echo $row2['total_marks']; ?></td>
+                            <td><?php echo $tques; ?></td>
+                            <td><?php echo $tmarks; ?></td>
                     <?php } ?>
                 </tr>
                 <?php } ?>
@@ -83,16 +111,24 @@
         </table>
         </div>
         
+        <?php 
+            $_SESSION['total_questions']=$tques;
+            $_SESSION['total_marks']=$tmarks;
+            $_SESSION['testname']=$tname;
+            $_SESSION['correctresponses']=$correctresponse;
+            // $_SESSION['variable_name']=variable_value;
+        ?>
         
         <div id = "MAIN EXAM">
+            <br><br><br><br>
         <?php
             if(($submissiontime == NULL) && ($starttime <= $currenttime) && ($currenttime <= $endtime)){ ?>
                     <a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank"><h1>View Question Paper</h1></a>
                     <a href="../uploads/<?php echo $tname.".pdf"; ?>" download><h1>Download Question Paper</h1></a>
 
-                    <p id="demo"></p>
+                    <br><br><br>
+                    <h1 style = "color:red;" id="demo"></h1>
                     <?php
-                        echo $endtime."<br>";
                         $split = date_parse_from_format('Y-m-d h:i:s', $endtime);
                
                         $yr1 = $split['year'];
@@ -101,74 +137,102 @@
                         $hr1 = $split['hour'];
                         $sc1 = $split['second'];
                         $mn1 = $split['minute'];
-                        $msc1 = 0;
+                        $monthName = date('F', mktime(0, 0, 0, $mnth1, 10)); 
 
                         
-
                     ?>  
-            <?php } ?>
+
+                    <form action="usersubmit.php" method="POST">
+                        <h1>
+                        <div id = "responsesheet" >
+
+                        </div>
+                        </h1>
+                    </form>
+
+
+
+                    <?php } ?>
+
         </div>
     </div>
     
     <script>
-        // Set the date we're counting down to
-        // var countDownDate = new Date("Jan 5, 2021 15:37:25").getTime();
-        // var countDownDate = new Date(2018, 11, 24, 10, 33, 30, 0);
-        var yrr = <?php echo $yr1; ?>;
-        var mnthr = <?php echo $mnth1; ?>;
-        var dyr = <?php echo $dy1; ?>;
-        var hrr = <?php echo $hr1; ?>;
-        var mnr = <?php echo $mn1; ?>;
-        var scr = <?php echo $sc1; ?>;
-        var countDownDate = new Date(yrr , mnthr , dyr , hrr , mnr , scr , 0 ).getTime();
-        
-        // Update the count down every 1 second
-        var x = setInterval(function() {
+        function starttimer(){
+            // Set the date we're counting down to
+            var countDownDate = new Date("<?php echo $monthName . " " . $dy1 . " ".",".$yr1 ." $hr1".":".$mn1.":".$sc1;?>").getTime();
 
-        // Get today's date and time
-        <?php
-            date_default_timezone_set('Asia/Kolkata');
-            $noww = date('Y-m-d H:i:s');
-            $split2 = date_parse_from_format('Y-m-d h:i:s', $noww);
-               
-            $yr2 = $split2['year'];
-            $mnth2 = $split2['month'];
-            $dy2 = $split2['day'];
-            $hr2 = $split2['hour'];
-            $sc2 = $split2['second'];
-            $mn2 = $split2['minute'];
-            $msc2 = 0;
-        ?>
-        var yrr1 = <?php echo $yr2; ?>;
-        var mnthr1 = <?php echo $mnth2; ?>;
-        var dyr1 = <?php echo $dy2; ?>;
-        var hrr1 = <?php echo $hr2; ?>;
-        var mnr1 = <?php echo $mn2; ?>;
-        var scr1 = <?php echo $sc2; ?>;
-        var now = new Date(yrr1 , mnthr1 , dyr1 , hrr1 , mnr1 , scr1 , 0).getTime();
-        // var now = new Date().getTime();
-        // alert(countDownDate);
-        // alert(now);
-            
-        // Find the distance between now and the count down date
-        var distance = countDownDate - now;
-            
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-        // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
-            
-        // If the count down is over, write some text 
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+            // Update the count down every 1 second
+            var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="demo"
+            document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("demo").innerHTML = "EXPIRED";
+                document.getElementById("responsesheet").style.display = "none";
+            }
+            }, 1000);
         }
-        }, 1000);
+        function generate_responses(){
+            var n = <?php echo $tques; ?>;
+            var str = "<h3>";
+            for(i = 1 ; i <= Number(n) ; i++){
+                if(i == 1){
+                    str += "<p>USER RESPONSE SHEET:</p>";
+                }
+                
+                var num = i.toString();
+                str += num;
+
+                str += " : <input type=\"checkbox\" name=\""
+                str += num
+                str += "a\"" 
+                str += "id = \"" 
+                str += num 
+                str += "a\">"
+
+                str += " : <input type=\"checkbox\" name=\""
+                str += num
+                str += "b\"" 
+                str += "id = \"" 
+                str += num 
+                str += "b\">"
+
+                str += " : <input type=\"checkbox\" name=\""
+                str += num
+                str += "c\"" 
+                str += "id = \"" 
+                str += num 
+                str += "c\">"
+
+                str += " : <input type=\"checkbox\" name=\""
+                str += num
+                str += "d\"" 
+                str += "id = \"" 
+                str += num 
+                str += "d\">" + "<br>"
+
+            }
+            str += "</h3>" ;
+            str += "<button id = 'submit' onclick = 'calulate_respones();'> SUBMIT  </button>";
+            document.getElementById("responsesheet").innerHTML = str;
+        }
     </script>
 </body>
 </html>
