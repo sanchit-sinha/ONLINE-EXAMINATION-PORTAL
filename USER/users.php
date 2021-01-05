@@ -47,7 +47,7 @@
     <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; TESTS</span> -->
 
     <div id = "greetings" style="text-align: center;">
-        <h1>Hello <?php echo $_SESSION["fullname"] ?></h1>
+        <h1>HELLO <?php echo $_SESSION["fullname"] ?></h1>
         <div id = "logout" style="text-align: right;">
             <button onclick="logout_user" class="w3-button w3-green">
                 <a href="../logout.php">LOGOUT</a>
@@ -179,7 +179,7 @@
                 <h2 >ATTEMPTED</h2>
                 <table class="w3-table-all">
                     <thead>
-                        <tr class="w3-red">
+                        <tr class="w3-cyan">
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
                             <th><h3>Total Questions </h3></th>
@@ -264,7 +264,7 @@
                 <h2 >UPCOMING</h2>
                 <table class="w3-table-all">
                     <thead>
-                        <tr class="w3-red">
+                        <tr class="w3-blue">
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
                             <th><h3>Total Questions </h3></th>
@@ -283,7 +283,7 @@
                                 $nques = $upcoming[$i1][1];
                                 $tmark = $upcoming[$i1][2];
                                 $st = $upcoming[$i1][3];
-                                $et = $upcoming[$i1][3];
+                                $et = $upcoming[$i1][4];
 
                                 // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
                             ?>
@@ -299,7 +299,6 @@
                     <?php } ?>
                 </table>
             </div>
->
             
         </div>
     </div>
