@@ -59,6 +59,7 @@ if (isset($_POST['submit']))
             $sql2 = "INSERT INTO `Online_Examination_System`.`test_details` (`test_name`, `total_questions`, `total_marks`, `start_time`, `end_time`, `correct_responses`) VALUES('$testname', '$total_questions','$totalmarks','$starttime','$endtime','$correctresponse')";
             mysqli_query($conn, $sql2);
             header("Location: admin.php?st=success");
+            
         }
         else
         {

@@ -78,13 +78,16 @@
         input[type=submit]:hover {
         background-color: #45a049;
         }
+        legend{
+            text-align : center;
+        }
     </style>
 </head>
 <body>
     <div class="sidenav">
         <a href="admin.php">CREATE TESTS</a><br><br>
-        <a href="user_analysis.html">USER ANALYSIS</a><br><br>
-        <a href="preview_tests.html">PREVIEW TESTS</a><br><br>
+        <a href="user_analysis.php">USER ANALYSIS</a><br><br>
+        <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
       </div>
 
     <div id = "container">
@@ -107,35 +110,7 @@
                 </button> 
                 <br>
                 <div class="row">
-                        <div class="col-xs-8 col-xs-offset-2">
-                            <table class="table table-striped table-hover w3-table-all">
-                                <thead>
-                                    <tr class = "w3-red"> 
-                                        <br><br>
-                                        <th><h3>#</h3></th>
-                                        <th><h3>Test Name</h3></th>
-                                        <th><h3>Time Created </h3></th>
-                                        <th><h3>File Name</h3></th>
-                                        <th><h3>View</h3></th>
-                                        <th><h3>Download</h3></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $i = 1;
-                                while($row = mysqli_fetch_array($result)) { ?>
-                                <tr>
-                                    <td><?php echo $i++; ?></td>
-                                    <td><?php echo $row['test_name']; ?></td>
-                                    <td><?php echo $row['created_datetime']; ?></td>
-                                    <td><?php echo $row['file_name']; ?></td>
-                                    <td><a href="../uploads/<?php echo $row['file_name']; ?>" target="_blank">View</a></td>
-                                    <td><a href="../uploads/<?php echo $row['file_name']; ?>" download>Download</td>
-                                </tr>
-                                <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
+                        
                 </div>
                 <div id = "questions" style="display: none;">
                     <div id ="testname">
@@ -154,7 +129,9 @@
                     <div class="row">
                         <div class="col-xs-8 col-xs-offset-2 well">
                         <form action="upload.php" method="post" enctype="multipart/form-data">
-                            <legend><h3>Select File to Upload:</h3></legend>
+                        <div style="text-align: center;">
+                            <h3 style="text-align: center;">Select File to Upload:</h3>
+                        </div>
                             <div class="form-group">
                                 <input type="file" name="file1" />
                             </div>
@@ -174,11 +151,11 @@
                             <?php if(isset($_GET['st'])) { ?>
                                 <div class="alert alert-danger text-center">
                                 <?php if ($_GET['st'] == 'success') {
-                                        echo "File Uploaded Successfully!";
+                                        echo "<script>alert('File Uploaded Successfully!');</script>";
                                     }
                                     else
                                     {
-                                        echo 'Invalid File Extension!';
+                                        echo "<script>alert('Invalid File Extension!');</script>";
                                     } ?>
                                 </div>
                             <?php } ?>
