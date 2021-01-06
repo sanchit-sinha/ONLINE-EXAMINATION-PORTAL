@@ -12,8 +12,7 @@
     // echo $inputuserpassword."<br>";
     // echo $inputusermobilenumber."<br>";
 
-    
-
+    $convert_password = password_hash($inputuserpassword , PASSWORD_BCRYPT);
     $usercheck = "SELECT * from user_details WHERE User_Name = '$inputusername'";
     $result = $conn->query($usercheck);
 
@@ -22,7 +21,7 @@
         include 'index.html';
     } 
     else{
-        $insert = "INSERT INTO user_details VALUES ('$inputusername', '$inputuserpassword', '$inputuserfull_name', '$inputusermobilenumber', '$isadmin');";     
+        $insert = "INSERT INTO user_details VALUES ('$inputusername', '$convert_password', '$inputuserfull_name', '$inputusermobilenumber', '$isadmin');";     
         if($conn->query($insert) == TRUE){
             echo "User Name successfully registerd !";
             include 'index.html';

@@ -81,19 +81,20 @@ button:hover {
             <hr>
 
             <label for="UserName"><b>User Name</b></label>
-            <input type="text"  placeholder="Enter User Name" name="input_username" required>
+            <input type="text"  pattern="[a-zA-Z0-9][a-zA-Z0-9 ]*" placeholder="Enter User Name" name="input_username" required>
 
             <label for="FullName"><b>Full Name</b></label>
             <input type="text" placeholder="Full Name" name="input_userfullname" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="input_userpassword" required>
+            <input id = "p1" type="password" placeholder="Enter Password" name="input_userpassword" required>
 
             <label for="psw-repeat"><b>Repeat Password</b></label>
-            <input type="password" placeholder="Repeat Password" name="input_userpassword_again" required>
+            <input id = "p2" type="password" placeholder="Repeat Password" onblur="check_password();" name="input_userpassword_again" required>
+            <span id = "displayerror" style="display: none; color: red;font-weight: bolder;">Incorrect Password<br></span>
            
             <label for="mob-no"><b>Mobile Number</b></label>
-            <input type="text"  placeholder="Enter Mobile Number" name="input_usermobilenumber" required>
+            <input type="text" pattern="[0-9]{10}" placeholder="Enter Mobile Number" name="input_usermobilenumber" required>
             
             <!-- <label>
             <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -106,5 +107,16 @@ button:hover {
         </div>
         </form>
 
+
+        <script>
+          function check_password(){
+            var1 = document.getElementById('p1').value;
+            var2 = document.getElementById('p2').value;
+            
+            if(var1 != var2) document.getElementById('displayerror').style.display = "block";
+            else document.getElementById('displayerror').style.display = "none";
+          }
+
+        </script>
 </body>
 </html>
