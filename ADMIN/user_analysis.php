@@ -96,6 +96,8 @@
       </div>
 
     <div id = "container">
+    <h1  style = "text-align:center; font-weight:bolder"> SCORE CARD</h1>
+
         <table class = "w3-table-all">
             <thead>
                 <tr>
@@ -153,3 +155,7 @@
         </table>
     </div>  
 </body>
+
+<?php
+    include 'query.php';
+?>

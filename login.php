@@ -22,8 +22,8 @@
         }
     } 
     else{
-        echo "<h2>Invalid User Name or Password </h2><br>";
-        include 'invalid_user.html';
+        echo "<h2 style='color:red; text-align:center;'>Invalid User Name or Password !!</h2><br>";
+        include 'signup.html';
     }
     $conn->close();
 ?>

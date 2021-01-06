@@ -18,18 +18,19 @@
     </title>
     <link rel="stylesheet" href="Assets/Css/style-user.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../assets/CSS/users.css">
     <style>
         body{
-            background-image: url("../assets/images/bg.jpeg");
+            /* background-image: url("../assets/images/bg.jpeg"); */
             background-size: cover;
             background-repeat: no-repeat;
-            text-align: center;
+            /* text-align: center; */
             /* margin-top: 15%; */
         }
         #container{
             /* text-align: center; */
             display: block ;
-            /* max-width: 15vw; */
+            max-width: 90vw;
         }
         h2{
             color : rgb(2, 108, 149);
@@ -44,18 +45,32 @@
 </head>
 <body>
 
-    <div class="sidenav">
-        <!-- change -->
+    <!-- <div class="sidenav">
         <a href='users.php'>TESTS</a><br><br>
         <a href="examportal.php">EXAM PORTAL</a><br><br>
-      </div>
+        <a href="contactus.html">CONTACT US</a><br><br>
+      </div> -->
+    
 
-    <!-- <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; TESTS</span> -->
+      <div id = "container-menu">
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <a href="users.php">TESTS</a><br><br>
+                <a href="examportal.php">EXAM PORTAL</a><br><br>
+                <a href="contactus.php">CONTACT US</a><br><br>
+            </div>
+        </div>
+        
+        <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
+    </div>
+
+
 
     <div id = "greetings" style="text-align: center;">
-        <h1>HELLO <?php echo $_SESSION["fullname"] ?></h1>
+        <h1 style="font-weight:bolder;">Hello <?php echo $_SESSION["fullname"] ?> !</h1>
         <div id = "logout" style="text-align: right;">
-            <button onclick="logout_user" class="w3-button w3-green">
+            <button onclick="logout_user" class="w3-button w3-red">
                 <a href="../logout.php">LOGOUT</a>
             </button>
         </div>
@@ -144,7 +159,7 @@
 
 
             <div id = "Live_tests">
-                <h2 > TESTS LIVE</h2>
+                <h2 style="font-weight:bolder;"> TESTS LIVE</h2>
                 <table class="w3-table-all">
                     <thead>
                         <tr class="w3-green">
@@ -152,7 +167,7 @@
                             <th><h3>Test Name</h3></th>
                             <th><h3>Total Questions </h3></th>
                             <th><h3>Total Marks</h3></th>
-                            <th><h3></h3></th>
+                            <th><h3>LINK</h3></th>
                             <!-- Subject to change on manual uploading -->
                             <!-- incorporate later -->
                             <!-- <th><h3>View Mistakes</h3></th> -->
@@ -182,7 +197,7 @@
                 </div>
                 <br><br><br>
             <div id = "Attempted_tests">
-                <h2 >ATTEMPTED</h2>
+                <h2 style="font-weight:bolder;">ATTEMPTED</h2>
                 <table class="w3-table-all">
                     <thead>
                         <tr class="w3-cyan">
@@ -229,7 +244,7 @@
             <br><br><br>
 
             <div id = "Notattempted_tests">
-                <h2 >NOT ATTEMPTED TESTS</h2>
+                <h2 style="font-weight:bolder;">NOT ATTEMPTED TESTS</h2>
                 <table class="w3-table-all">
                     <thead>
                         <tr class="w3-red">
@@ -269,7 +284,7 @@
             </div>
             <br><br><br>
 
-                <h2 >UPCOMING</h2>
+                <h2 style="font-weight:bolder;">UPCOMING</h2>
                 <table class="w3-table-all">
                     <thead>
                         <tr class="w3-blue">
@@ -308,6 +323,7 @@
     </div>
 
 
-
+    <!-- SCRIPTS -->
+    <script src="../assets/JS/mynav.js"></script>
 </body>
 </html>

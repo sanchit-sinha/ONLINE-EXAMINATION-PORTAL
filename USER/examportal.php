@@ -13,13 +13,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Exam Portal</title>
     <link rel="stylesheet" href="Assets/Css/style-user.css">
+    <link rel="stylesheet" href="../assets/CSS/users.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body{
-            background-image: url("../assets/images/bg.jpeg");
+            /* background-image: url("../assets/images/bg.jpeg"); */
             background-size: cover;
             background-repeat: no-repeat;
-            text-align: center;
+            /* text-align: center; */
             /* margin-top: 15%; */
         }
         #livetest{
@@ -44,14 +45,28 @@
     </style>
 </head>
 <body onload = "starttimer(); generate_responses();">
-    <div class="sidenav">
-        <!-- change -->
+    <!-- <div class="sidenav">
         <a href="users.php">TESTS</a><br><br>
         <a href="examportal.php">EXAM PORTAL</a><br><br>
-      </div>
+        <a href="contactus.html">CONTACT US</a><br><br>
+      </div> -->
+      <div id = "container-menu">
+        <div id="myNav" class="overlay">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <div class="overlay-content">
+                <a href="users.php">TESTS</a><br><br>
+                <a href="examportal.php">EXAM PORTAL</a><br><br>
+                <a href="contactus.pph">CONTACT US</a><br><br>
+            </div>
+        </div>
+        
+        <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
+    </div>
+
+
 
       <div id = "logout" style="text-align: right;">
-            <button onclick="logout_user" class="w3-button w3-green">
+            <button onclick="logout_user" class="w3-button w3-red">
                 <a href="../logout.php">LOGOUT</a>
             </button>
         </div>
@@ -161,6 +176,9 @@
         </div>
     </div>
     
+
+    <!-- SCRIPTS -->
+    <script src="../assets/JS/mynav.js"></script>
     <script>
         function starttimer(){
             // Set the date we're counting down to
