@@ -190,7 +190,7 @@
                             <td><span style="color: red; text-align:center;"><?php echo $nques; ?></span></td>
                             <td><span style="color: red; text-align:center;"><?php echo $tmark; ?></span></td>
                             <!-- Subject to change on manual uploading -->
-                            <td><a href="examportal.php"><span style="color: red;font-size:20px">Give Exam</span></a><td>
+                            <td><a href="examportal.php"><span style="color: red;font-size:20px">Give Exam</span></a></td>
                         </tr>
                     <?php } ?>
                 </table>

@@ -110,8 +110,8 @@
                     <th class = "w3-green"><p style="text-align: center; font-size:16px; font-weight:bolder;">Correct Questions</p></th>
                     <th class = "w3-green"><p style="text-align: center; font-size:16px; font-weight:bolder;">Incorrect Questions</p></th>
                     <th class = "w3-green"><p style="text-align: center; font-size:16px; font-weight:bolder;">Unattempted Questions</p></th>
-                    <th class = "w3-green"><p style="text-align: center; font-size:16px; font-weight:bolder;">Complete Analysis</p></th>
                     <th class = "w3-green"><p style="text-align: center; font-size:16px; font-weight:bolder;">View Paper</p></th>
+                    <th class = "w3-green"><p style="text-align: center; font-size:16px; font-weight:bolder;">Complete Analysis</p></th>
                 </tr>
             </thead>
             <?php

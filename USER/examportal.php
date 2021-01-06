@@ -56,7 +56,7 @@
             <div class="overlay-content">
                 <a href="users.php">TESTS</a><br><br>
                 <a href="examportal.php">EXAM PORTAL</a><br><br>
-                <a href="contactus.pph">CONTACT US</a><br><br>
+                <a href="contactus.php">CONTACT US</a><br><br>
             </div>
         </div>
         

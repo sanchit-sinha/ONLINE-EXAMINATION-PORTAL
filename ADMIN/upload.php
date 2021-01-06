@@ -42,7 +42,7 @@ if (isset($_POST['submit']))
             // echo $starttime."<br>";
             // echo $endtime."<br>";
             // echo $totalmarks."<br>";    
-            $path = '/opt/lampp/htdocs/ONLINE-EXAMINATION-PORTAL/uploads/';
+            $path = '../uploads/';
 
             // if(move_uploaded_file($_FILES['file1']['tmp_name'],($path . $newname)) == true){
             //     echo "Moved!";
