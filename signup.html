@@ -74,7 +74,7 @@ button:hover {
 <body>
 
     <!-- change action -->
-    <form action="signup.php" style="border:1px solid #ccc" method="POST">
+    <form action="signup.php" style="border:1px solid #ccc" method="POST" onsubmit="return check_password();">
         <div class="container">
             <h1>Sign Up</h1>
             <p>Please fill in this form to create an account.</p>       
@@ -91,7 +91,7 @@ button:hover {
 
             <label for="psw-repeat"><b>Repeat Password</b></label>
             <input id = "p2" type="password" placeholder="Repeat Password" onblur="check_password();" name="input_userpassword_again" required>
-            <span id = "displayerror" style="display: none; color: red;font-weight: bolder;">Incorrect Password<br></span>
+            <span id = "displayerror" style="display: none; color: red;font-weight: bolder;">Password does not match<br></span>
            
             <label for="mob-no"><b>Mobile Number</b></label>
             <input type="text" pattern="[0-9]{10}" placeholder="Enter Mobile Number" name="input_usermobilenumber" required>
@@ -113,8 +113,14 @@ button:hover {
             var1 = document.getElementById('p1').value;
             var2 = document.getElementById('p2').value;
             
-            if(var1 != var2) document.getElementById('displayerror').style.display = "block";
-            else document.getElementById('displayerror').style.display = "none";
+            if(var1 != var2) {
+              document.getElementById('displayerror').style.display = "block";
+              return false;
+            }
+            else {
+              document.getElementById('displayerror').style.display = "none";
+              return true;
+            }
           }
 
         </script>

@@ -3,6 +3,10 @@
     // fetch files
     $sql = "SELECT * FROM uploaded_test_details";
     $result = mysqli_query($conn, $sql);
+
+    $querymaxid = "SELECT SNo FROM uploaded_test_details ORDER BY SNo DESC LIMIT 1";
+    $result1 = mysqli_query($conn , $querymaxid);
+    $id =  mysqli_fetch_array($result1)[0] + 1;
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +89,7 @@
 </head>
 <body>
     <div class="sidenav">
-        <a href="../index.html"> BACK</a><br><br>
+    <a href="../logout.php"> LOGOUT</a><br><br>
         <a href="admin.php">CREATE TESTS</a><br><br>
         <a href="user_analysis.php">USER ANALYSIS</a><br><br>
         <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
@@ -96,7 +100,8 @@
                 <h3>Enter the details of the new test</h3>
                 <form action="main.php">
                     <h3 >TEST NAME : </h3>
-                    <input type = "text" id = "testname" name = "testname" placeholder = "Enter test name" onblur = "fill_testname();"> <br><br>
+                    <!-- <input type = "text" id = "testname" name = "testname" placeholder = "Enter test name" onblur = "fill_testname();" readonly value = '<?php echo "HTS".$id; ?>'> <br><br> -->
+                    <input type = "text" id = "testname1" name = "testname1" placeholder = "Enter test name"  readonly value = '<?php echo "HTS".$id; ?>'> <br><br>
                     <h3>NO. OF QUESTIONS : </h3>
                     <input type="number" required id="numberofquestions" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
                  </form>
@@ -116,10 +121,11 @@
                 <div id = "questions" style="display: none;">
                     <div id ="testname">
                         <h3>
-                            TEST NAME: <input type="text" required name = "name_of_test1" id = "name_of_test1" readonly> 
-                            NO. OF QUESTIONS: <input type="number" required name = "no_ofques1" id = "no_ofques1" readonly><br>
-                            START TIME : <input name = "starttime1" type = "datetime-local"> 
-                            END TIME : <input name = "endtime1" type = "datetime-local">  <br>
+                            <!-- TEST NAME: <input type="text" required name = "name_of_test1" id = "name_of_test1" readonly>  -->
+                            TEST NAME:  <input type = "text" id = "testnameq" name = "testnameq" placeholder = "Enter test name"  readonly value = '<?php echo "HTS".$id; ?>'> <br><br>
+                            NO. OF QUESTIONS: <input type="numberq" required name = "no_ofques1q" id = "no_ofques1" readonly><br>
+                            START TIME : <input name = "starttime1q" type = "datetime-local"> 
+                            END TIME : <input name = "endtime1q" type = "datetime-local">  <br>
                         </h3>
                     </div>
                     <div id = "allquestions" >
@@ -141,11 +147,11 @@
                             </div>
                             <div id = "display_responses">
                                 <h3>
-                                TEST NAME: <input type="text" required name = "name_of_test2" id = "name_of_test2" readonly><br>
+                                TEST NAME:  <input type = "text" id = "name_of_test2" name = "name_of_test2" placeholder = "Enter test name"  readonly value = '<?php echo "HTS".$id; ?>'><br>
                                 NO. OF QUESTIONS: <input type="number" required name = "no_ofques2" id = "no_ofques2" readonly><br>
                                 START TIME : <input name = "starttime2" type = "datetime-local"> <br>
                                 END TIME : <input name = "endtime2" type = "datetime-local">  <br>
-                                Correct Responses: <input type="text" required name = "display_correct_responses" id = "display_correct_responses" readonly> <br>
+                                <input type="text" required name = "display_correct_responses" id = "display_correct_responses" readonly style="display : none;"> <br>
                                 Total Marks: <input type="number" required name = "total_marks2" id = "total_marks2" required> <br>
                                 </h3>
                             </div>
@@ -175,12 +181,12 @@
 
 
                 <script>
-                    function fill_testname(){
-                        var username = document.getElementById('testname').value;
+                    // function fill_testname(){
+                    //     var username = document.getElementById('testname').value;
                         
-                        document.getElementById('name_of_test1').value = username;
-                        document.getElementById('name_of_test2').value = username;
-                    }
+                    //     document.getElementById('name_of_test1').value = username;
+                    //     document.getElementById('name_of_test2').value = username;
+                    // }
                     function make_questions_visible(){
                         if(document.getElementById('questions').style.display == 'none') {
                             document.getElementById('questions').style.display = 'block';
@@ -255,7 +261,7 @@
 
                         }
                         str += "</h3> <br>";
-                        str += "<button id = 'responsegenerator' onclick = 'calulate_respones();' class='w3-button w3-green'> CALCULATE CORRECT RESPONSE  </button>";
+                        str += "<button id = 'responsegenerator' onclick = 'calulate_respones();' class='w3-button w3-green'> SAVE RESPONSES </button>";
                         document.getElementById("correct_response").innerHTML = str;
                     }
 

@@ -51,12 +51,15 @@ if (isset($_POST['submit']))
             //     echo "Not Moved!";
             // }
             // exit();
+            $querymaxid = "SELECT SNo FROM uploaded_test_details ORDER BY SNo DESC LIMIT 1";
+            $result = mysqli_query($conn , $querymaxid);
+            $Sno =  mysqli_fetch_array($result)[0] + 1;
 
             move_uploaded_file($_FILES['file1']['tmp_name'],($path . $newname));
 
-            $sql = "INSERT INTO `Online_Examination_System`.`uploaded_test_details` (`test_name`, `file_name`, `correct_response`) VALUES('$testname', '$newname','$correctresponse')";
+            $sql = "INSERT INTO `uploaded_test_details` (`SNo`,`test_name`, `file_name`, `correct_response`) VALUES('$Sno','$testname', '$newname','$correctresponse')";
             mysqli_query($conn, $sql);
-            $sql2 = "INSERT INTO `Online_Examination_System`.`test_details` (`test_name`, `total_questions`, `total_marks`, `start_time`, `end_time`, `correct_responses`) VALUES('$testname', '$total_questions','$totalmarks','$starttime','$endtime','$correctresponse')";
+            $sql2 = "INSERT INTO `test_details` (`test_name`, `total_questions`, `total_marks`, `start_time`, `end_time`, `correct_responses`) VALUES('$testname', '$total_questions','$totalmarks','$starttime','$endtime','$correctresponse')";
             mysqli_query($conn, $sql2);
             header("Location: admin.php?st=success");
             

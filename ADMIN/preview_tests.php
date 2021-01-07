@@ -82,8 +82,8 @@
 </head>
 <body>
     <div class="sidenav">
-    <a href="../index.html"> BACK</a><br><br>
-        <a href="admin.php">CREATE TESTS</a><br><br>
+    <a href="../logout.php"> LOGOUT</a><br><br>
+    <a href="admin.php">CREATE TESTS</a><br><br>
         <a href="user_analysis.php">USER ANALYSIS</a><br><br>
         <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
       </div>
@@ -97,23 +97,38 @@
                             <br><br>
                             <th><h3>#</h3></th>
                             <th><h3>Test Name</h3></th>
-                            <th><h3>Time Created </h3></th>
+                            <th><h3>START TIME  </h3></th>
+                            <th><h3>END TIME  </h3></th>
                             <th><h3>File Name</h3></th>
                             <th><h3>View</h3></th>
                             <th><h3>Download</h3></th>
+                            <th><h3>CHANGE TEST</h3></th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php
                     $i = 1;
                     while($row = mysqli_fetch_array($result)) { ?>
+                    <?php 
+                        $tname = $row['test_name'];
+                        $sql2 = "SELECT * FROM test_details WHERE test_name = '$tname'";
+                        $result2 = mysqli_query($conn, $sql2);
+
+                        $row2 = mysqli_fetch_array($result2);
+                        $stime = $row2['start_time'];
+                        $etime = $row2['end_time']; 
+                    ?>
                     <tr>
                         <td><?php echo $i++; ?></td>
                         <td><?php echo $row['test_name']; ?></td>
-                        <td><?php echo $row['created_datetime']; ?></td>
+                        <td><?php echo $stime; ?></td>
+                        <td><?php echo $etime;?></td>
                         <td><?php echo $row['file_name']; ?></td>
                         <td><a href="../uploads/<?php echo $row['file_name']; ?>" target="_blank">View</a></td>
                         <td><a href="../uploads/<?php echo $row['file_name']; ?>" download>Download</td>
+                        <td>
+                            
+                        </td>
                     </tr>
                     <?php } ?>
                     </tbody>
