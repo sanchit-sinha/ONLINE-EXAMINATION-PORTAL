@@ -253,7 +253,13 @@
 
             }
             str += "</h3>" ;
-            str += "<button id = 'submit' onclick = 'calulate_respones();' class='w3-button w3-green'> SUBMIT  </button>";
+            if(Number(n) != 0) str += "<button id = 'submit' onclick = 'calulate_respones();' class='w3-button w3-green'> SUBMIT  </button>";
+
+            if(Number(n) == 0){
+                str += "<p>Marking scheme for each question : [+4 , -2] </p>";
+
+                str+= "<p>The questions are of subjective type.</p>";
+            }
             document.getElementById("responsesheet").innerHTML = str;
         }
     </script>

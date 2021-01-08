@@ -16,13 +16,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
     <link rel="stylesheet" href="Assets/Css/style-admin.css">
+    <link rel="stylesheet" href="../assets/CSS/users.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body{
             background-image: url("../assets/images/bg.jpeg");
             background-size: cover;
             background-repeat: no-repeat;
-            text-align: center;
             /* margin-top: 15%; */
         }
         #numberofquestions ,#testname, #enter_manually, #upload_pdf, #responsegenerator,#name_of_test{
@@ -88,33 +88,48 @@
     </style>
 </head>
 <body>
-    <div class="sidenav">
-    <a href="../logout.php"> LOGOUT</a><br><br>
-        <a href="admin.php">CREATE TESTS</a><br><br>
-        <a href="user_analysis.php">USER ANALYSIS</a><br><br>
-        <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
+      <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="../logout.php"> LOGOUT</a><br><br>
+            <a href="admin.php">CREATE TESTS</a><br><br>
+            <a href="user_analysis.php">USER ANALYSIS</a><br><br>
+            <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
+        </div>
       </div>
+      
+      <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
 
     <div id = "container">
         <div id = "create_tests">
                 <h3>Enter the details of the new test</h3>
-                <form action="main.php">
+                <form action="subjective.php" method = "POST">
                     <h3 >TEST NAME : </h3>
                     <!-- <input type = "text" id = "testname" name = "testname" placeholder = "Enter test name" onblur = "fill_testname();" readonly value = '<?php echo "HTS".$id; ?>'> <br><br> -->
                     <input type = "text" id = "testname1" name = "testname1" placeholder = "Enter test name"  readonly value = '<?php echo "HTS".$id; ?>'> <br><br>
                     <h3>NO. OF QUESTIONS : </h3>
                     <input type="number" required id="numberofquestions" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
-                 </form>
                     <br><br>
-                <button id = "enter_manually" onclick="make_questions_visible();" class="w3-button w3-green">
-                    <span id = "display_on_button_enter_manually" >ENTER MANUALLY</span>
-                </button> 
-                <button id = "upload_pdf" onclick="make_upload_panel_visible();" class="w3-button w3-green">
-                    <span id="disaply_on_button_upload">
-                        UPLOAD
-                    </span>
-                </button> 
-                <br>
+                    <div id="button_for_subjective_questions" style="display : block; margin:auto; text-align : center; ">
+                        <button id = "enter_manually"  class="w3-button w3-green">
+                            <span id = "display_on_button_enter_manually" >ENTER MANUALLY</span>
+                        </button> 
+                    </div>  
+                </form>
+                <br><br><br>
+                <h1  style="display : block; margin:auto; text-align : center; "> OR </h1>
+                <br><br><br>
+
+                    <div id = "button_for_upload" style="display : block; margin:auto; text-align : center; ">
+                    <button id = "upload_pdf" onclick="make_upload_panel_visible();" class="w3-button w3-green">
+                        <span id="disaply_on_button_upload">
+                            UPLOAD
+                        </span>
+                    </button> 
+                     </div>
+               
+               
+                     <br>
                 <div class="row">
                         
                 </div>
@@ -179,7 +194,7 @@
                     
                 </div>
 
-
+                <script src="../assets/JS/mynav.js"></script>
                 <script>
                     // function fill_testname(){
                     //     var username = document.getElementById('testname').value;

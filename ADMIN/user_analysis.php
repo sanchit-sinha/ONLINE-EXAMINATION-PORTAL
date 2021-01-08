@@ -12,13 +12,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ADMIN</title>
     <link rel="stylesheet" href="Assets/Css/style-admin.css">
+    <link rel="stylesheet" href="../assets/CSS/users.css">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <style>
         body{
             background-image: url("../assets/images/bg.jpeg");
             background-size: cover;
             background-repeat: no-repeat;
-            text-align: center;
             /* margin-top: 15%; */
         }
         #numberofquestions ,#testname, #enter_manually, #upload_pdf, #responsegenerator,#name_of_test{
@@ -88,12 +88,17 @@
     </style>
 </head>
 <body>
-    <div class="sidenav">
-    <a href="../logout.php"> LOGOUT</a><br><br>
-        <a href="admin.php">CREATE TESTS</a><br><br>
-        <a href="user_analysis.php">USER ANALYSIS</a><br><br>
-        <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content">
+            <a href="../logout.php"> LOGOUT</a><br><br>
+            <a href="admin.php">CREATE TESTS</a><br><br>
+            <a href="user_analysis.php">USER ANALYSIS</a><br><br>
+            <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
+        </div>
       </div>
+
+      <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
 
     <div id = "container">
     <h1  style = "text-align:center; font-weight:bolder"> SCORE CARD</h1>
@@ -154,6 +159,8 @@
                 <?php } ?>
         </table>
     </div>  
+    <script src="../assets/JS/mynav.js"></script>
+
 </body>
 
 <?php
