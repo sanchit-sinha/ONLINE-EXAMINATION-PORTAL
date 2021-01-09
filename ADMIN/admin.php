@@ -4,9 +4,16 @@
     $sql = "SELECT * FROM uploaded_test_details";
     $result = mysqli_query($conn, $sql);
 
-    $querymaxid = "SELECT SNo FROM uploaded_test_details ORDER BY SNo DESC LIMIT 1";
+    $querymaxid = "SELECT test_name FROM test_details ORDER BY test_name DESC LIMIT 1";
     $result1 = mysqli_query($conn , $querymaxid);
-    $id =  mysqli_fetch_array($result1)[0] + 1;
+    $str =  mysqli_fetch_array($result1)[0];
+    
+    // echo $str;
+    $num = '';
+    $len = strlen($str);
+    for($i = 3 ; $i < $len ;  $i++) $num = $num."$str[$i]";
+
+    $id =  number_format($num) + 1;
 ?>
 
 <!DOCTYPE html>

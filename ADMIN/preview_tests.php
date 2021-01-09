@@ -1,7 +1,7 @@
 <?php
     include '../connecting_database.php';
     // fetch files
-    $sql = "SELECT * FROM uploaded_test_details";
+    $sql = "SELECT * FROM test_details";
     $result = mysqli_query($conn, $sql);
 ?>
 <!DOCTYPE html>
@@ -104,10 +104,9 @@
                             <th><h3>Test Name</h3></th>
                             <th><h3>START TIME  </h3></th>
                             <th><h3>END TIME  </h3></th>
-                            <th><h3>File Name</h3></th>
                             <th><h3>View</h3></th>
                             <th><h3>Download</h3></th>
-                            <th><h3>CHANGE TEST</h3></th>
+                            <!-- <th><h3>CHANGE TEST</h3></th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -116,24 +115,22 @@
                     while($row = mysqli_fetch_array($result)) { ?>
                     <?php 
                         $tname = $row['test_name'];
-                        $sql2 = "SELECT * FROM test_details WHERE test_name = '$tname'";
-                        $result2 = mysqli_query($conn, $sql2);
-
-                        $row2 = mysqli_fetch_array($result2);
-                        $stime = $row2['start_time'];
-                        $etime = $row2['end_time']; 
+                        $stime = $row['start_time'];
+                        $etime = $row['end_time']; 
                     ?>
                     <tr>
                         <td><?php echo $i++; ?></td>
-                        <td><?php echo $row['test_name']; ?></td>
+                        <td><?php echo $tname; ?></td>
                         <td><?php echo $stime; ?></td>
                         <td><?php echo $etime;?></td>
-                        <td><?php echo $row['file_name']; ?></td>
-                        <td><a href="../uploads/<?php echo $row['file_name']; ?>" target="_blank">View</a></td>
-                        <td><a href="../uploads/<?php echo $row['file_name']; ?>" download>Download</td>
-                        <td>
-                            
-                        </td>
+                        <?php if($row['correct_responses'] != "manually_entered_test_details"){ ?>
+                        <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></td>
+                        <td><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</td>
+                        <?php }else{ ?>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        <?php } ?>
                     </tr>
                     <?php } ?>
                     </tbody>

@@ -22,6 +22,5 @@
     $correctresponse = "manually_entered_test_details";
     $insert = "INSERT INTO `test_details` (`test_name`, `total_questions`, `total_marks`, `start_time`, `end_time`, `correct_responses`) VALUES('$tname', '$tques','$tmarks','$stime','$etime','$correctresponse')";
     // echo $insert;
-    mysqli_query($conn , $insert);
-    header("Location: admin.php?st=success");
+    if(mysqli_query($conn , $insert) == true) header("Location: admin.php?st=success");
 ?>
