@@ -1,15 +1,26 @@
+<?php 
+    include '../connecting_database.php';
+
+    $tname = $_POST['testnamevalue'];
+    $qno = $_POST['qno'];
+    $totalqno = $_POST['totalqno'];
+    // echo $tname ."<br>";
+    // echo $qno ;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <title>MANUAL TEST</title>
     <style>
         * {
         box-sizing: border-box;
         }
 
-        input[type=text], select, textarea {
+        input[type=text],input[type=number], select, textarea {
         width: 100%;
         padding: 12px;
         border: 1px solid #ccc;
@@ -51,9 +62,18 @@
         }
 
         .col-75 {
-        float: left;
-        width: 75%;
-        margin-top: 6px;
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+        .col-75text{
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+            background-color : white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
         }
 
         /* Clear floats after the columns */
@@ -65,7 +85,7 @@
 
         /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
         @media screen and (max-width: 600px) {
-        .col-25, .col-75, input[type=submit] {
+        .col-25, .col-75, .col-75text, input[type=submit] {
             width: 100%;
             margin-top: 0;
         }
@@ -190,44 +210,34 @@ div {outline-color:black;}
     align-items: stretch;
   }
 }
+.w3-button {
+    width:150px;
+    margin-bottom : 175px;
+    margin-left : 2px;
+    margin-right : 2px;
+}
 </style>
+<script type="text/javascript" src="http://latex.codecogs.com/latexit.js"></script>
+
 </head>
 <body>
-    <div class = "container">
-    <div class="row">
-            <div class="col-25">
-                <label for="testname">TEST NAME : </label>
-                </div>
-                <div class="col-75">
-                <input type="text" id="testname" name="testname" placeholder="Name of Test">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-25">
-                <label for="question_no">QUESTION NUMBER : </label>
-                </div>
-                <div class="col-75">
-                <input type="text" id="number_of_questions" name="number_of_questions" placeholder="Number of Questions" >
-            </div>
-        </div>
-        
-    </div>
         <?php 
             // change it 
-            $n = 5;
+            $i = $_POST['qno'];
 
-            echo "<h1 style =  'text-align : center; font-size:50px;'> ENTER QUESTIONS </h1>";
-            for($i = 1 ; $i <= 5 ; $i++){
+            echo "<h1 style =  'text-align : center; font-size:50px;'> ENTER QUESTION </h1>";
                 $str = '
                 <div class="container">
-                    <form action="/action_page.php">
+                    <form action="feed_subjective_to_database.php" method = "POST">
                     <div class="outset">
+                    <input type="text" id="testname" name="testname" placeholder="Name of Test" value = "'.$tname.'" style="display:none;" readonly>
+                    <input type="text" id="tqno" name="total_qno" placeholder="Total Question" value = "'.$totalqno.'" style="display:none;" readonly>
                         <div class="row">
                             <div class="col-25">
                             <label for="question_no">Question Number : </label>
                             </div>
                             <div class="col-75">
-                            <input type="text" id="question_number" name="question_number_'.$i.'" placeholder="Question Number" value = "'.$i.'">
+                            <input type="text"  readonly name="question_number"  placeholder="Enter Question Number" value = "'.$i.'">
                             </div>
                         </div>
                         <div class="row">
@@ -235,10 +245,10 @@ div {outline-color:black;}
                             <label for="type_of_question">Type of Question : </label>
                             </div>
                             <div class="col-75">
-                            <select id="type_of_question" name="type_of_question_'.$i.'">
+                            <select id="type_of_question" name="type_of_question">
                                 <option value="multiple_correct">MULTI CORRECT</option>
                                 <option value="single_correct">SINGLE CORRECT</option>
-                                <option value="integer_type">INTEGER TYPW</option>
+                                <option value="integer_type">INTEGER TYPE</option>
                                 <option value="passage_type">PASSAGE TYPE</option>
                                 <option value="matrix_type">MATRIX TYPE</option>
                             </select>
@@ -246,10 +256,34 @@ div {outline-color:black;}
                         </div>
                         <div class="row">
                             <div class="col-25">
+                            <label for="tag_of_question">Tag of Question : </label>
+                            </div>
+                            <div class="col-75">
+                            <select id="tag_of_question" name="tag_of_question">
+                                <option value="multiple_correct">MULTI CORRECT</option>
+                                <option value="single_correct">SINGLE CORRECT</option>
+                                <option value="integer_type">INTEGER TYPE</option>
+                                <option value="passage_type">PASSAGE TYPE</option>
+                                <option value="matrix_type">MATRIX TYPE</option>
+                            </select>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-25">
+                            <label for="marking_scheme">Marking Scheme : </label>
+                            </div>
+                            <div class="col-75">
+                            <input type="number" style = "width:45%;" id="positive_marking_scheme" name="positive_marking_scheme" placeholder="Positive Marks" value = "4">
+                            <input type="number" style = "width:45%;" id="negative_marking_scheme" name="negative_marking_scheme" placeholder="Negative Marks" value = "-2">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-25">
                             <label for="question">Question</label>
                             </div>
                             <div class="col-75">
-                            <textarea id="question_value" name="question_'.$i.'" placeholder="Enter Question" style="height:200px"></textarea>
+                            <textarea id="questionvalue_'.$i.'" name ="questionvalue" placeholder="Enter Question" style="height:200px"></textarea>
                         </div>
                         </div>
                         <br><br>
@@ -259,71 +293,135 @@ div {outline-color:black;}
                             </div>
                         <div class = "row">
                             <div class="col-75">
-                            <button class = "block" id="preview" name="preview_'.$i.'">PREVIEW</button>
+                            <a class = "block w3-blue" id="preview_'.$i.'" name="preview"  href="#"  onclick="preview_question('.$i.');" >PREVIEW QUESTION </a>
                             </div>
                         </div>
                         <br><br>
                         <div class="col-25">
                             </div>
                         <div class = "row">
-                            <div class="col-75">
-                            <textarea id="previewx_box" name="previewbox_'.$i.'" placeholder="Preview Question" style="height:200px"></textarea>
+                            <div class="col-75text" style="height:200px">
+                                <p id = "previewquestion_'.$i.'" style = "text-align : left; color:gray;">Preview Question here </p>
                             </div>
                         </div>
-
                         <p> OPTIONS </p>
-                            <label class="containerr"> 
+              
+
+                                <label class="containerr"> 
                                 <div class = "row">
                                         <div class="col-25">
-                                        <input type="checkbox" name="option_'.$i.'a">
+                                        <input type="checkbox" name="optionn[]" value = "a">
                                             <span class="checkmark" style = "text-align : center;"> a </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue" name="optionvalue_'.$i.'a" placeholder="Enter Option" style="height:200px"></textarea>
+                                            <textarea id="optionvalue_'.$i.'a" name="optionvalue_a" placeholder="Enter Option A" style="height:200px;"></textarea>
                                         </div>
-                                    </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-75">
+                                            <a  id = "previewbutton_'.$i.'a" class = "block w3-blue" href="#"  onclick="preview_option('.$i.',1)">PREVIEW OPTION A</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_a"  >
+                                            <p id = "previewoptionvalue_'.$i.'a" style = "text-align : left; color:gray;">Preview Option A here </p>
+                                        </div>
+
+                                        </div>
                                 </label>
 
                                 <label class="containerr"> 
                                 <div class = "row">
                                         <div class="col-25">
-                                            <input type="checkbox" name="option_'.$i.'b">
+                                        <input type="checkbox" name="optionn[]" value = "b">
                                             <span class="checkmark" style = "text-align : center;"> b </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue" name="optionvalue_'.$i.'b" placeholder="Enter Option" style="height:200px"></textarea>
+                                            <textarea id="optionvalue_'.$i.'b" name="optionvalue_b" placeholder="Enter Option B" style="height:200px;"></textarea>
                                         </div>
-                                    </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-75">
+                                            <a  id = "previewbutton_'.$i.'b" class = "block w3-blue" href="#"  onclick="preview_option('.$i.',2);">PREVIEW OPTION B</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_b" >
+                                            <p id = "previewoptionvalue_'.$i.'b" style = "text-align : left; color:gray;">Preview Option B here </p>
+                                        </div>
+
+                                        </div>
+
                                 </label>
 
                                 <label class="containerr"> 
                                 <div class = "row">
                                         <div class="col-25">
-                                            <input type="checkbox" name="option_'.$i.'c">
+                                        <input type="checkbox" name="optionn[]" value = "c">
                                             <span class="checkmark" style = "text-align : center;"> c </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue" name="optionvalue_'.$i.'c" placeholder="Enter Option" style="height:200px"></textarea>
+                                            <textarea id="optionvalue_'.$i.'c"name="optionvalue_c" placeholder="Enter Option C" style="height:200px;"></textarea>
                                         </div>
-                                    </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-75">
+                                            <a  id = "previewbutton_'.$i.'c" class = "block w3-blue" href="#"  onclick="preview_option('.$i.',3);">PREVIEW OPTION C</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_c"  >
+                                            <p id = "previewoptionvalue_'.$i.'c" style = "text-align : left; color:gray;">Preview Option C here </p>
+                                        </div>
+
+                                        </div>
+
+
                                 </label>
 
                                 <label class="containerr"> 
                                 <div class = "row">
                                         <div class="col-25">
-                                            <input type="checkbox" name="option_'.$i.'d">
+                                        <input type="checkbox" name="optionn[]" value = "d">
                                             <span class="checkmark" style = "text-align : center;"> d </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue" name="optionvalue_'.$i.'d"  placeholder="Enter Option" style="height:200px"></textarea>
+                                            <textarea id="optionvalue_'.$i.'d" name="optionvalue_d" placeholder="Enter Option D" style="height:200px;"></textarea>
                                         </div>
-                                    </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class = "row">
+                                            <div class="col-75">
+                                            <a id = "previewbutton_'.$i.'d" class = "block w3-blue"  href="#"  onclick="preview_option('.$i.',4);">PREVIEW OPTION D</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-25">
+                                        </div>
+                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_d"  >
+                                            <p id = "previewoptionvalue_'.$i.'d" style = "text-align : left; color:gray;">Preview Option D here </p>
+                                        </div>
+
+                                        </div>
                                 </label>
 
 
 
                         <div class = "row">
-                            <button class = "block" id="submit" name="submit_'.$i.'">SAVE</button>
+                            <button class = "block" id="submit" name="submit">SAVE</button>
                         </div>
                     </div>
 
@@ -331,7 +429,78 @@ div {outline-color:black;}
                 </div>';
 
                 echo $str;
-            }
          ?>
+    
+         <script>
+                function preview_question(num){
+                    var ID = "questionvalue_"  + num ;
+                    var mssg = document.getElementById(ID).value;
+                    var n = mssg.length;
+
+
+                    var output = '';
+                    var start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                    var end = '" border="0"/>';
+                    for(i = 0 ; i < n ; i++){
+                        if(mssg[i] != '$') output += mssg[i];
+                        else{
+                            i++;
+                            output += start;
+                            while(mssg[i] != '$'){
+                                if(mssg[i] == '$') break;
+                                output += mssg[i];
+                                i++;
+                            }
+                            // output += '<br></div>';
+                            output +=  end;
+                        }
+                    }
+
+                    var IDpreview = "previewquestion_" + num;
+                    document.getElementById(IDpreview).innerHTML  = output;
+                    // document.getElementById(IDpreview).style.color = "";
+                }
+                function preview_option(num , option){
+                    var ID = "optionvalue_";
+                    var str = '';
+                    if(option == 1) str = 'a';
+                    else if(option == 2) str = 'b';  
+                    else if(option == 3) str = 'c';
+                    else if(option == 4) str = 'd';
+
+                    ID += num;
+                    ID += str;
+                    // alert(ID);
+
+                    var mssg = document.getElementById(ID).value;
+                    var n = mssg.length;
+
+
+                    var output = '';
+                    var start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                    var end = '" border="0"/>';
+                    for(i = 0 ; i < n ; i++){
+                        if(mssg[i] != '$') output += mssg[i];
+                        else{
+                            i++;
+                            output += start;
+                            while(mssg[i] != '$'){
+                                if(mssg[i] == '$') break;
+                                output += mssg[i];
+                                i++;
+                            }
+                            // output += '<br></div>';
+                            output +=  end;
+                        }
+                    }
+
+                    var IDpreview = "previewoptionvalue_";
+                    IDpreview += num;
+                    IDpreview += str;
+
+                    document.getElementById(IDpreview).innerHTML  = output;
+
+                }
+        </script>
 </body>
 </html>
