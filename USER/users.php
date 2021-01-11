@@ -109,6 +109,8 @@
                     date_default_timezone_set('Asia/Kolkata');
                     $currenttime = date('Y-m-d H:i:s');
 
+                    $correctresponse = $row1['correct_responses'];
+
                     // DEBUG
                     // echo $testname."<br>";
                     // echo $starttime."<br>";
@@ -131,7 +133,7 @@
                     if(($submissiontime != NULL) && ($submissiontime <= $endtime) && ($uuser == $user)){
                         // attempted 
                         $arr = array();
-                        array_push($arr , $testname , $totalquestions , $totalmarks ,$marksobtained, $testfilepath);
+                        array_push($arr , $testname , $totalquestions , $totalmarks ,$marksobtained, $testfilepath,$correctresponse);
                         array_push($attempted , $arr);
                     }
                     if(($submissiontime == NULL) && ($currenttime > $endtime)){
@@ -149,7 +151,7 @@
                     if(($submissiontime == NULL) && ($starttime <= $currenttime) && ($currenttime <= $endtime)){
                         // live
                         $arr = array();
-                        array_push($arr , $testname , $totalquestions , $totalmarks , $testfilepath);
+                        array_push($arr , $testname , $totalquestions , $totalmarks , $testfilepath,$correctresponse);
                         array_push($live , $arr);
                     }
 
@@ -181,6 +183,7 @@
                                 $nques = $live[$i1][1];
                                 $tmark = $live[$i1][2];
                                 $tfpath = $live[$i1][3];
+                                $cresponse = $live[$i1][4];
 
                                 // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
                             ?>
@@ -190,7 +193,11 @@
                             <td><span style="color: red; text-align:center;"><?php echo $nques; ?></span></td>
                             <td><span style="color: red; text-align:center;"><?php echo $tmark; ?></span></td>
                             <!-- Subject to change on manual uploading -->
-                            <td><a href="examportal.php"><span style="color: red;font-size:20px">Give Exam</span></a></td>
+                            <?php if($cresponse == "manually_entered_test_details"){ ?>
+                                <td><a href="examsite.php"><span style="color: red;font-size:20px">Give Exam</span></a></td>
+                            <?php } else { ?>
+                                <td><a href="examportal.php"><span style="color: red;font-size:20px">Give Exam</span></a></td>
+                            <?php } ?>
                         </tr>
                     <?php } ?>
                 </table>
@@ -223,6 +230,7 @@
                                 $tmark = $attempted[$i1][2];
                                 $umarks = $attempted[$i1][3];
                                 $tfpath = $attempted[$i1][4];
+                                $cresponse = $attempted[$i1][5];
 
                                 // echo $tname." ".$nques." ".$tmark. " ".$tfpath ;
                             ?>
@@ -233,9 +241,16 @@
                             <td><span style="color: green; text-align:center;"><?php echo $tmark; ?></span></td>
                             <td><span style="color: green; text-align:center;"><?php echo $umarks; ?></span></td>
                             <!-- Subject to change on manual uploading -->
-                            <td><span style="color: green; text-align:center;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></span></td>
+                            <?php if($cresponse == "manually_entered_test_details"){ ?>
+                                <td><span style="color: green; text-align:center;">-</span></td>
+                                <td><span style="color:green; text-align:center;">-</span></td>
+                                <td><span style="color:green; text-align:center;"><a href="subjectiveanalysis.php?username=<?php echo $user; ?>&testname=<?php echo $tname; ?>" target="_blank" >Test Analysis</span></td>
+                            <?php } else { ?>
+                                <td><span style="color: green; text-align:center;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" target="_blank">View</a></span></td>
                             <td><span style="color:green; text-align:center;"><a href="../uploads/<?php echo $tname.".pdf"; ?>" download>Download</span></td>
                             <td><span style="color:green; text-align:center;"><a href="analysis.php?username=<?php echo $user; ?>&testname=<?php echo $tname; ?>" target="_blank" >Test Analysis</span></td>
+                            <?php } ?>
+                            
                         </tr>
                         <?php } ?>
 

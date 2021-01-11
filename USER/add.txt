@@ -1,0 +1,13 @@
+1) table SAVE TEST
+user name |  testname | question_number | user_response | 
+
+// css 
+/examsite 
+// users.php
+//subjective_submit
+// admin subjective.php
+----------------------------------
+user part added sucessfully 
+
+problem in admin add_subjective_to..;
+part
