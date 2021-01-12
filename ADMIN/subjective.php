@@ -6,6 +6,35 @@
     $totalqno = $_POST['totalqno'];
     // echo $tname ."<br>";
     // echo $qno ;
+
+    $search =  "SELECT * from manually_entered_test_details WHERE question_number = '$qno' AND test_name = '$tname'";
+    // echo $search;
+    $result = mysqli_query($conn, $search);
+    $row = mysqli_fetch_array($result);
+
+    
+    $update_part = false;
+    if($result->num_rows){
+        $update_part = true;
+
+        $pstatement = $row['problem_statement'];
+        $pmarks = $row['positive_marks'];
+        $nmarks = $row['negative_marks'];
+        $optiona = $row['optiona'];
+        $optionb = $row['optionb'];
+        $optionc = $row['optionc'];
+        $optiond = $row['optiond'];
+
+
+
+        // echo $pstatement."<br>";
+        // echo $pmarks."<br>";
+        // echo $nmarks."<br>";
+        // echo $optiona."<br>";
+        // echo $optionb."<br>";
+        // echo $optionc."<br>";
+        // echo $optiond."<br>";
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -221,6 +250,223 @@ div {outline-color:black;}
 
 </head>
 <body>
+    <?php 
+        if($update_part){
+            echo '<h1 style = "text-align : center; font-size:50px;"> PREVIEW QUESTION </h1>';
+            // $i = $qno;
+            $n = $qno;
+                    for($i = $n ; $i <= $n ; $i++){
+                        $search =  "SELECT * from manually_entered_test_details WHERE question_number = '$i' AND test_name = '$tname'";
+                        $result = mysqli_query($conn, $search);
+                        $row = mysqli_fetch_array($result);
+
+                        $pstatement = $row['problem_statement'];
+                        $pmarks = $row['positive_marks'];
+                        $nmarks = $row['negative_marks'];
+                        $optiona = $row['optiona'];
+                        $optionb = $row['optionb'];
+                        $optionc = $row['optionc'];
+                        $optiond = $row['optiond'];
+
+                        // echo $pstatement."<br>";
+                        // echo $pmarks."<br>";
+                        // echo $nmarks."<br>";
+                        // echo $optiona."<br>";
+                        // echo $optionb."<br>";
+                        // echo $optionc."<br>";
+                        // echo $optiond."<br>";
+
+                        $str = '
+                        <div class="container">
+                            <div class="outset">
+                                <div class="row">
+                                    <div class="col-25">
+                                    <label for="question_no">Q'.$i.') </label>
+                                    </div>
+                                </div>
+                            
+                                
+
+                                <div class="row">
+                                    <div class="col-25">
+                                    <label for="marking_scheme">Marking Scheme : </label>
+                                    </div>
+                                    <div class="col-75">
+                                    <input type="text" style = "width:45%; text-align : center;" id="positive_marking_scheme" name="positive_marking_scheme" placeholder="Positive Marks" value = "+'.$pmarks.'" readonly >
+                                    <input type="text" style = "width:45%; text-align : center;" id="negative_marking_scheme" name="negative_marking_scheme" placeholder="Negative Marks" value = "'.$nmarks.'" readonly >
+                                    </div>
+                                </div>
+                                ';
+                                    $len =  strlen($pstatement);
+                                    $start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                                    $end = '" border="0"/>';
+                                    $ques = '';
+                                    for($j = 0 ; $j < $len ; $j++){
+                                        if($pstatement[$j] != '$') $ques = $ques.$pstatement[$j];
+                                        else{
+                                            $j++;
+                                            $ques = $ques.$start;
+                                            while($pstatement[$j] != '$'){
+                                                if($pstatement[$j] == '$') break;
+                                                $ques = $ques.$pstatement[$j];
+                                                $j++;
+                                            }
+                                            // output += '<br></div>';
+                                            $ques =  $ques.$end;
+                                        }
+                                    }
+                                    // echo $ques;
+                                    $str = $str.'                           
+                                    <div class = "row">
+                                    <div class="col-25">
+                                <label for="question">Question</label>
+                                    </div>
+                                    <div class="col-75text" style="height:200px">
+                                        <p id = "previewquestion_'.$i.'" style = "text-align : left; color:black;">'.$ques.' </p>
+                                    </div>
+                                </div>';
+
+                                $len =  strlen($optiona);
+                                    $start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                                    $end = '" border="0"/>';
+                                    $opa = '';
+                                    for($j = 0 ; $j < $len ; $j++){
+                                        if($optiona[$j] != '$') $opa = $opa.$optiona[$j];
+                                        else{
+                                            $j++;
+                                            $opa = $opa.$start;
+                                            while($optiona[$j] != '$'){
+                                                if($optiona[$j] == '$') break;
+                                                $opa = $opa.$optiona[$j];
+                                                $j++;
+                                            }
+                                            // output += '<br></div>';
+                                            $opa =  $opa.$end;
+                                        }
+                                    }
+
+                                $str = $str . '<div class = "row">
+                                        <div class="col-25">
+                                        <h1>a)</h1> 
+                                        </div>
+                                        <div class="col-75text" style="height:100px; " name="previewoptionvalue_a"  >
+                                            <p id = "previewoptionvalue_'.$i.'a" style = "text-align : left; color:black;">'.$opa.'</p>
+                                        </div>
+                                </div>';
+                                // b
+
+                                $len =  strlen($optionb);
+                                    $start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                                    $end = '" border="0"/>';
+                                    $opb = '';
+                                    for($j = 0 ; $j < $len ; $j++){
+                                        if($optionb[$j] != '$') $opb = $opb.$optionb[$j];
+                                        else{
+                                            $j++;
+                                            $opb = $opb.$start;
+                                            while($optionb[$j] != '$'){
+                                                if($optionb[$j] == '$') break;
+                                                $opb = $opb.$optionb[$j];
+                                                $j++;
+                                            }
+                                            // output += '<br></div>';
+                                            $opb =  $opb.$end;
+                                        }
+                                    }
+
+                                $str = $str . '<div class = "row">
+                                        <div class="col-25">
+                                        <h1>b)</h1> 
+                                        </div>
+                                        <div class="col-75text" style="height:100px; " name="previewoptionvalue_b"  >
+                                            <p id = "previewoptionvalue_'.$i.'b" style = "text-align : left; color:black;">'.$opb.'</p>
+                                        </div>
+                                </div>';
+                                
+                                // c
+                                $len =  strlen($optionc);
+                                    $start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                                    $end = '" border="0"/>';
+                                    $opc = '';
+                                    for($j = 0 ; $j < $len ; $j++){
+                                        if($optionc[$j] != '$') $opc = $opc.$optionc[$j];
+                                        else{
+                                            $j++;
+                                            $opc = $opc.$start;
+                                            while($optionc[$j] != '$'){
+                                                if($optionc[$j] == '$') break;
+                                                $opc = $opc.$optionc[$j];
+                                                $j++;
+                                            }
+                                            // output += '<br></div>';
+                                            $opc =  $opc.$end;
+                                        }
+                                    }
+
+                                $str = $str . '<div class = "row">
+                                        <div class="col-25">
+                                        <h1>c)</h1> 
+                                        </div>
+                                        <div class="col-75text" style="height:100px; " name="previewoptionvalue_c"  >
+                                            <p id = "previewoptionvalue_'.$i.'c" style = "text-align : left; color:black;">'.$opc.'</p>
+                                        </div>
+                                </div>';
+
+                                // d
+                                $len =  strlen($optiond);
+                                    $start = '<img src="http://latex.codecogs.com/gif.latex?' ; 
+                                    $end = '" border="0"/>';
+                                    $opd = '';
+                                    for($j = 0 ; $j < $len ; $j++){
+                                        if($optiond[$j] != '$') $opd = $opd.$optiond[$j];
+                                        else{
+                                            $j++;
+                                            $opd = $opd.$start;
+                                            while($optiond[$j] != '$'){
+                                                if($optiond[$j] == '$') break;
+                                                $opd = $opd.$optiond[$j];
+                                                $j++;
+                                            }
+                                            // output += '<br></div>';
+                                            $opd =  $opd.$end;
+                                        }
+                                    }
+
+                                $str = $str . '<div class = "row">
+                                        <div class="col-25">
+                                        <h1>d)</h1> 
+                                        </div>
+                                        <div class="col-75text" style="height:100px; " name="previewoptionvalue_d"  >
+                                            <p id = "previewoptionvalue_'.$i.'d" style = "text-align : left; color:black;">'.$opd.'</p>
+                                        </div>
+                                </div>';
+
+
+                            $str = $str.'<br>
+                            <div class = "row">
+                                <div class="col-25">
+                                </div>
+                                <div class="col-75"  style = " font-size : 26px;">
+                                <div class="form-check-inline">
+                                
+                                    
+                                </div>
+                            </div>
+
+
+                            </div>
+                                    
+                        </div><br><br><br><br><br>';
+
+                        echo $str;
+                    }
+            
+        }
+    ?>
+
+
+
+
         <?php 
             // change it 
             $i = $_POST['qno'];
