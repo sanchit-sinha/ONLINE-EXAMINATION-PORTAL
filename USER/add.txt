@@ -11,3 +11,5 @@ user part added sucessfully
 
 problem in admin add_subjective_to..;
 part
+
+// add subjective - update part

@@ -1,19 +1,36 @@
 <?php
-    include '../connecting_database.php';
-    // fetch files
-    $sql = "SELECT * FROM uploaded_test_details";
-    $result = mysqli_query($conn, $sql);
-
-    $querymaxid = "SELECT test_name FROM test_details ORDER BY test_name DESC LIMIT 1";
-    $result1 = mysqli_query($conn , $querymaxid);
-    $str =  mysqli_fetch_array($result1)[0];
+        include '../connecting_database.php';
+        // fetch files
+        $sql = "SELECT * FROM uploaded_test_details";
+        $result = mysqli_query($conn, $sql);
     
-    // echo $str;
-    $num = '';
-    $len = strlen($str);
-    for($i = 3 ; $i < $len ;  $i++) $num = $num."$str[$i]";
-
-    $id =  number_format($num) + 1;
+        // $querymaxid = "SELECT test_name FROM test_details ORDER BY test_name DESC LIMIT 1";
+        // $result1 = mysqli_query($conn , $querymaxid);
+        // $str =  mysqli_fetch_array($result1)[0];
+        
+        // // echo $str;
+        // $num = '';
+        // $len = strlen($str);
+        // for($i = 3 ; $i < $len ;  $i++) $num = $num."$str[$i]";
+    
+        // $id =  number_format($num) + 1;
+        // // echo $num . "<br>";
+        // // echo $id;
+    
+        $querymax = "SELECT * FROM test_details";
+        $result1 = mysqli_query($conn , $querymax);
+        $id = -1;
+        while($roww = mysqli_fetch_array($result1)){
+            $str = $roww['test_name'];
+            $len = strlen($str);
+            $num = '';
+            for($i = 3 ; $i < $len ;  $i++) $num = $num."$str[$i]";
+    
+            $id = max($id , number_format($num));
+        }
+    
+        $id++;
+        // echo $id; 
 ?>
 
 <!DOCTYPE html>

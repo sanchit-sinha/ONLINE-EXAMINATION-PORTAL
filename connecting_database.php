@@ -2,7 +2,8 @@
     $adminservername = "localhost";
     $adminusername = "root";
     $adminpassword = "";
-    $admindbname = "Online_Examination_System";
+    $admindbname = "examlive";
+
 
     $conn = mysqli_connect($adminservername , $adminusername , $adminpassword , $admindbname);
     if(!$conn){

@@ -58,10 +58,13 @@ if (isset($_POST['submit']))
             move_uploaded_file($_FILES['file1']['tmp_name'],($path . $newname));
 
             $sql = "INSERT INTO `uploaded_test_details` (`SNo`,`test_name`, `file_name`, `correct_response`) VALUES('$Sno','$testname', '$newname','$correctresponse')";
-            mysqli_query($conn, $sql);
+            
             $sql2 = "INSERT INTO `test_details` (`test_name`, `total_questions`, `total_marks`, `start_time`, `end_time`, `correct_responses`) VALUES('$testname', '$total_questions','$totalmarks','$starttime','$endtime','$correctresponse')";
-            mysqli_query($conn, $sql2);
+            if(mysqli_query($conn, $sql2)==true && mysqli_query($conn, $sql) == true)
             header("Location: admin.php?st=success");
+            else{
+                header("Location: admin.php?st=error");
+            }
             
         }
         else

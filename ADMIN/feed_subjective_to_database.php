@@ -45,9 +45,15 @@
         $place1 = 'Q'.$qno;
 
         $sql1 = "SELECT * from manually_entered_test_details WHERE test_name = '$tname' AND question_number = '$qno'";
+        // echo $sql1."<br>";
+
         $result1 = mysqli_query($conn, $sql1);
         if ($result1->num_rows == 0) {
             $insert = "INSERT INTO `manually_entered_test_details` (`SNo`, `test_name`, `question_number`, `created_datetime`, `problem_type`, `problem_statement`, `problem_tag`, `positive_marks`, `negative_marks`, `optiona`, `optionb`, `optionc`, `optiond`, `correct_response`) VALUES ('$Sno', '$tname', '$qno', current_timestamp(), '$ptype', '$pstatement', '$ptag', '$pmarks', '$nmarks', '$optiona', '$optionb', '$optionc', '$optiond', '$correctresponse');";
+
+            // echo $insert;
+            // exit();
+
             if($conn->query($insert) == TRUE){
                 $st = "question".$qno;
                 $url = "front_subjective.php?$place1=inserted&testname1=$tname&questionnumber1=$tqno";

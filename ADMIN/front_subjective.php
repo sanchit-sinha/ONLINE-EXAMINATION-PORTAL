@@ -346,7 +346,7 @@ div {outline-color:black;}
                     </div>
                 </div>
                 </div>
-                <button class = "block" id="submit"><h2>CONFIRM TEST
+                <button class = "block" id="submit"><h2>CONFIRM TEST </h2></button>
         </form>
 </body>
 </html>
