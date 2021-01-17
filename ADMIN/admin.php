@@ -124,13 +124,13 @@
       
       <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
 
-    <div id = "container">
+    <div id = "container">  
         <div id = "create_tests">
                 <h3>Enter the details of the new test</h3>
                 <form action="front_subjective.php" method = "GET">
                     <h3 >TEST NAME : </h3>
                     <!-- <input type = "text" id = "testname" name = "testname" placeholder = "Enter test name" onblur = "fill_testname();" readonly value = '<?php echo "HTS".$id; ?>'> <br><br> -->
-                    <input type = "text" id = "testname1" name = "testname1" placeholder = "Enter test name"  readonly value = '<?php echo "HTS".$id; ?>'> <br><br>
+                    <input type = "text" id = "testname1" name = "testname1" placeholder = "Enter test name"   value = '<?php echo "HTS".$id; ?>'> <br><br>
                     <h3>NO. OF QUESTIONS : </h3>
                     <input type="number" required id="numberofquestions" name = "questionnumber1" placeholder="No. of questions" onblur="generate_questions();generate_response_sheet();">
                     <br><br>

@@ -318,7 +318,7 @@ div {outline-color:black;}
                 <label for="testname">TEST NAME : </label>
                 </div>
                 <div class="col-75">
-                <input type="text" id="testname" name="finaltestname" placeholder="Name of Test" value = '<?php echo $tname;?>'  readonly>
+                <input type="text" id="testname" name="finaltestname" placeholder="Name of Test" value = '<?php echo $tname;?>'  >
             </div>
         </div>
         <div class="row">
@@ -346,7 +346,7 @@ div {outline-color:black;}
                     </div>
                 </div>
                 </div>
-                <button class = "block" id="submit"><h2>CONFIRM TEST </h2></button>
+                <button class = "block" id="submit"><h2>CONFIRM TEST
         </form>
 </body>
 </html>
