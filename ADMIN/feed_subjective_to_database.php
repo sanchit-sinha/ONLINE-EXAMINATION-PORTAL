@@ -17,6 +17,69 @@
 
         $correctresponse='';
 
+
+
+
+
+        // ******************
+        $ques = '';
+        $len =  strlen($pstatement);
+        for($j = 0 ; $j < $len ; $j++){
+            if($pstatement[$j] == '\\'){
+                $ques = $ques.'\\';
+            }
+            $ques = $ques.$pstatement[$j];
+        }
+            // echo $ques;
+            // exit();
+            $pstatement = $ques;
+
+
+        $ques = '';
+        $len =  strlen($optiona);
+        for($j = 0 ; $j < $len ; $j++){
+            if($optiona[$j] == '\\'){
+                $ques = $ques.'\\';
+            }
+            $ques = $ques.$optiona[$j];
+        }
+        $optiona = $ques;
+
+        $ques = '';
+        $len =  strlen($optionb);
+        for($j = 0 ; $j < $len ; $j++){
+            if($optionb[$j] == '\\'){
+                $ques = $ques.'\\';
+            }
+            $ques = $ques.$optionb[$j];
+        }
+        $optionb = $ques;
+
+        $ques = '';
+        $len =  strlen($optionc);
+        for($j = 0 ; $j < $len ; $j++){
+            if($optionc[$j] == '\\'){
+                $ques = $ques.'\\';
+            }
+            $ques = $ques.$optionc[$j];
+        }
+        $optionc = $ques;
+
+        $ques = '';
+        $len =  strlen($optiond);
+        for($j = 0 ; $j < $len ; $j++){
+            if($optiond[$j] == '\\'){
+                $ques = $ques.'\\';
+            }
+            $ques = $ques.$optiond[$j];
+        }
+        $optiond = $ques;
+
+
+
+
+
+
         // Loop to store and display values of individual checked checkbox.
         foreach($_POST['optionn'] as $selected){
             $correctresponse = $correctresponse.$selected;

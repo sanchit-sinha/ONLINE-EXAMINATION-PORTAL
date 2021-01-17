@@ -560,7 +560,7 @@ div {outline-color:black;}
                                             <span class="checkmark" style = "text-align : center;"> a </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue_'.$i.'a" name="optionvalue_a" placeholder="Enter Option A" style="height:200px;"></textarea>
+                                            <textarea id="optionvalue_'.$i.'a" name="optionvalue_a" placeholder="Enter Option A" style="height:50px;"></textarea>
                                         </div>
 
                                         <div class="col-25">
@@ -573,7 +573,7 @@ div {outline-color:black;}
 
                                         <div class="col-25">
                                         </div>
-                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_a"  >
+                                        <div class="col-75text" style="height:50px; " name="previewoptionvalue_a"  >
                                             <p id = "previewoptionvalue_'.$i.'a" style = "text-align : left; color:gray;">Preview Option A here </p>
                                         </div>
 
@@ -587,7 +587,7 @@ div {outline-color:black;}
                                             <span class="checkmark" style = "text-align : center;"> b </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue_'.$i.'b" name="optionvalue_b" placeholder="Enter Option B" style="height:200px;"></textarea>
+                                            <textarea id="optionvalue_'.$i.'b" name="optionvalue_b" placeholder="Enter Option B" style="height:50px;"></textarea>
                                         </div>
 
                                         <div class="col-25">
@@ -600,7 +600,7 @@ div {outline-color:black;}
 
                                         <div class="col-25">
                                         </div>
-                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_b" >
+                                        <div class="col-75text" style="height:50px; " name="previewoptionvalue_b" >
                                             <p id = "previewoptionvalue_'.$i.'b" style = "text-align : left; color:gray;">Preview Option B here </p>
                                         </div>
 
@@ -615,7 +615,7 @@ div {outline-color:black;}
                                             <span class="checkmark" style = "text-align : center;"> c </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue_'.$i.'c"name="optionvalue_c" placeholder="Enter Option C" style="height:200px;"></textarea>
+                                            <textarea id="optionvalue_'.$i.'c"name="optionvalue_c" placeholder="Enter Option C" style="height:50px;"></textarea>
                                         </div>
 
                                         <div class="col-25">
@@ -628,7 +628,7 @@ div {outline-color:black;}
 
                                         <div class="col-25">
                                         </div>
-                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_c"  >
+                                        <div class="col-75text" style="height:50px; " name="previewoptionvalue_c"  >
                                             <p id = "previewoptionvalue_'.$i.'c" style = "text-align : left; color:gray;">Preview Option C here </p>
                                         </div>
 
@@ -644,7 +644,7 @@ div {outline-color:black;}
                                             <span class="checkmark" style = "text-align : center;"> d </span>
                                         </div>
                                         <div class="col-75">
-                                            <textarea id="optionvalue_'.$i.'d" name="optionvalue_d" placeholder="Enter Option D" style="height:200px;"></textarea>
+                                            <textarea id="optionvalue_'.$i.'d" name="optionvalue_d" placeholder="Enter Option D" style="height:50px;"></textarea>
                                         </div>
 
                                         <div class="col-25">
@@ -657,7 +657,7 @@ div {outline-color:black;}
 
                                         <div class="col-25">
                                         </div>
-                                        <div class="col-75text" style="height:200px; " name="previewoptionvalue_d"  >
+                                        <div class="col-75text" style="height:50px; " name="previewoptionvalue_d"  >
                                             <p id = "previewoptionvalue_'.$i.'d" style = "text-align : left; color:gray;">Preview Option D here </p>
                                         </div>
 
