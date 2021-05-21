@@ -16,7 +16,8 @@
 
     <style>
         body{
-            background-image: url("../assets/images/bg.jpeg");
+            background-color: #f6fba2;
+            background-image: linear-gradient(315deg, #f6fba2 0%, #20ded3 74%);
             background-size: cover;
             background-repeat: no-repeat;
             /* margin-top: 15%; */
