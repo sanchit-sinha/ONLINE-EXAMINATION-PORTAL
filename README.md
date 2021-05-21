@@ -1,5 +1,5 @@
 # ONLINE-EXAMINATION-PORTAL
-## http://examlive.rf.gd/
+## <a href = "http://examlive.rf.gd"> ~Website </a>
 This is an online examination portal currently hosted on infinty-free.
 It has two panels - An admin panel and a User Panel 
 
@@ -18,12 +18,12 @@ The site is running PHP on the server side and plain javascript on the client si
 
 Features needed to be added - 
 1) Auto Submit 
-<!-- 2) Feeding in question using images and then converting them to pdf(Use DL, MathJax Library)   -->
+2) ~~Feeding in question using images and then converting them to pdf(Use DL, MathJax Library)~~
 3) Sound when timer is less than 2%  
-4) Subjective paper   
+4) ~~Subjective paper~~
 5) Allow numerical answer types .. for Miscellaneous type questions     
 6) embeded pdf view   
-7) change tests  
+7) virtual tests  
 8) analytics report  - tags for questions  
 
 
