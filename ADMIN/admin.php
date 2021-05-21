@@ -121,11 +121,10 @@
             <a href="../logout.php"> LOGOUT</a><br><br>
             <a href="admin.php">CREATE TESTS</a><br><br>
             <a href="user_analysis.php">USER ANALYSIS</a><br><br>
-            <a href="preview_tests.php">PREVIEW TESTS</a><br><br>
         </div>
       </div>
       
-      <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
+      <span style="font-size:30px;cursor:pointer; color:black; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
 
     <div id = "container">  
         <div id = "create_tests">

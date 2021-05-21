@@ -99,7 +99,7 @@
         </div>
       </div>
 
-      <span style="font-size:30px;cursor:pointer; color:blue; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
+      <span style="font-size:30px;cursor:pointer; color:black; font-weight:bolder;" onclick="openNav()">&#9776; Menu</span>
 
     <div id = "container">
     <h1  style = "text-align:center; font-weight:bolder"> SCORE CARD</h1>
